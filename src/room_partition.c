@@ -82,3 +82,10 @@ bool RoomPartition_hasOneClass(const struct RoomPartition *partition) {
 void RoomPartition_print(const struct RoomPartition *partition) {
     printf("Partition of %d classes\n", RoomPartition_numberOfClasses(partition));
 }
+
+void RoomPartition_free(struct RoomPartition *partition) {
+    for (unsigned int i = 0; i < partition->numRows; ++i) {
+        free(partition->elements[i]);
+    }
+    free(partition->elements);
+}

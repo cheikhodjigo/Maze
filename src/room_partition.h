@@ -26,6 +26,8 @@ struct RoomPartition {
  * The trivial partition is the partition where each room is single in its own
  * class.
  *
+ * Warning: Creates a memory leak if the partition is not freed.
+ *
  * @param numRows     The number of rows in the maze
  * @param numColumns  The number of columns in the maze
  * @return            The resulting partition
@@ -87,5 +89,12 @@ bool RoomPartition_hasOneClass(const struct RoomPartition *partition);
  * @param partition  The partition of the rooms
  */
 void RoomPartition_print(const struct RoomPartition *partition);
+
+/**
+ * Frees the given partition.
+ *
+ * @param partition  The partition of the rooms
+ */
+void RoomPartition_free(struct RoomPartition *partition);
 
 #endif
