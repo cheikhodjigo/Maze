@@ -9,13 +9,13 @@
 void testMaze() {
     //struct Arguments arguments = parseArguments(argc, argv);
     //return arguments.status;
-    struct Maze *maze = Maze_randomMaze(4, 3);
+    struct Maze *maze = Maze_randomMaze(8, 10);
     Maze_print(maze);
     printf("Are rooms consistent? %s\n", Maze_areRoomsConsistent(maze) ? "yes" : "no");
     Maze_free(maze);
 }
 
-int main(int argc, char **argv) {
+void testPartition() {
     struct RoomPartition partition = RoomPartition_create(4, 3);
     RoomPartition_print(&partition);
     RoomPartition_merge(&partition, 0, 0, 0, 1);
@@ -24,4 +24,8 @@ int main(int argc, char **argv) {
     RoomPartition_print(&partition);
     RoomPartition_merge(&partition, 0, 0, 0, 1);
     RoomPartition_print(&partition);
+}
+
+int main(int argc, char **argv) {
+    testMaze();
 }

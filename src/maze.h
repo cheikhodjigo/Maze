@@ -2,6 +2,7 @@
 #define MAZE_H
 
 #include <stdbool.h>
+#include "room_partition.h"
 
 // --------------- //
 // Data structures //
@@ -15,9 +16,10 @@ struct Room {   // A room in the maze
 };
 
 struct Maze {
-    unsigned int numRows; // The number of rows
-    unsigned int numCols; // The number of cols
-    struct Room **rooms;  // A matrix of all rooms
+    unsigned int numRows;           // The number of rows
+    unsigned int numCols;           // The number of cols
+    struct Room **rooms;            // A matrix of all rooms
+    struct RoomPartition partition; // A partition of the rooms
 };
 
 // ---------------- //
