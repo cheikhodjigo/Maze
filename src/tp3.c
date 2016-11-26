@@ -7,8 +7,6 @@
 #include "room_partition.h"
 
 void testMaze() {
-    //struct Arguments arguments = parseArguments(argc, argv);
-    //return arguments.status;
     struct Maze *maze = Maze_randomMaze(8, 10);
     Maze_print(maze);
     printf("Are rooms consistent? %s\n", Maze_areRoomsConsistent(maze) ? "yes" : "no");
@@ -27,5 +25,14 @@ void testPartition() {
 }
 
 int main(int argc, char **argv) {
-    testMaze();
+    struct Arguments arguments = parseArguments(argc, argv);
+    if (arguments.status != TP3_OK) {
+        //TODO: Error message?
+        return arguments.status;
+    } else {
+        struct Maze *maze = Maze_randomMaze(arguments.numRows,
+                                            arguments.numCols);
+        Maze_print(maze);
+        return TP3_OK;
+    }
 }

@@ -54,6 +54,7 @@ struct Arguments parseArguments(int argc, char **argv) {
 
     if (showHelp) {
         printUsage(argv);
+        exit(0);
     } else if (arguments.status == TP3_TYPE_ERROR) {
         printf("Error: the number of rows and columns must be an integer\n");
         printUsage(argv);
