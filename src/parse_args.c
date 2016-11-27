@@ -24,6 +24,8 @@ struct Arguments parseArguments(int argc, char **argv) {
     // Default argument
     strcpy(arguments.outputFormat, "text");
     arguments.status = TP3_OK;
+    arguments.numRows = NUM_ROWS_DEFAULT;
+    arguments.numCols = NUM_COLS_DEFAULT;
 
     struct option longOpts[] = {
         // Set flag
