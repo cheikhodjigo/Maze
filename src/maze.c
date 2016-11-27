@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <assert.h>
+#include <time.h>
 
 // ----------------- //
 // Private functions //
@@ -37,10 +38,10 @@ void Maze_makeTransitions(struct RoomsTransition transitions[],
 
 void Maze_shuffleTransitions(struct RoomsTransition transitions[],
                              unsigned int numTransitions) {
+    srand(time(NULL));
     for (int k = 0; k < numTransitions; ++k) {
-        //TODO: Add randomness
-        int i = (7 * k) % numTransitions;
-        int j = (11 * k) % numTransitions;
+        int i = rand() % numTransitions;
+        int j = rand() % numTransitions;
         struct RoomsTransition temp = transitions[i];
         transitions[i] = transitions[j];
         transitions[j] = temp;
