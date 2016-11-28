@@ -103,6 +103,21 @@ void Maze_toString(const struct Maze *maze,
     }
 }
 
+void Maze_addSolution(const struct Maze *maze,
+                      char** s) {
+    unsigned int i, j, ip, jp, k;
+    ip = Array_get(maze->path, 0)->first;
+    jp = Array_get(maze->path, 0)->second;
+    for (k = 0; k < maze->path->length; ++k) {
+        i = Array_get(maze->path, k)->first;
+        j = Array_get(maze->path, k)->second;
+        s[2*i + 1][2*j + 1] = 'X';
+        s[i + ip + 1][j + jp + 1] = 'X';
+        ip = i;
+        jp = j;
+    }
+}
+
 // ---------------- //
 // Public functions //
 // ---------------- //
@@ -125,6 +140,7 @@ struct Maze *Maze_randomMaze(unsigned int numRows, unsigned int numCols) {
     }
     maze->partition = RoomPartition_create(numRows, numCols);
     Maze_makePerfect(maze);
+    maze->path = Maze_path(maze, 0, 0, numRows - 1, numCols - 1);
     return maze;
 }
 
@@ -136,6 +152,7 @@ void Maze_free(struct Maze *maze) {
         free(maze->rooms[i]);
     free(maze->rooms);
     free(maze);
+    Array_delete(maze->path);
 }
 
 void Maze_print(const struct Maze *maze) {
@@ -148,12 +165,12 @@ void Maze_print(const struct Maze *maze) {
         s[i] = (char*)malloc(width * sizeof(char));
     }
     Maze_toString(maze, s);
+    Maze_addSolution(maze, s);
     for (i = 0; i < height; ++i) {
         for (j = 0; j < width; ++j)
             printf("%c",  s[i][j]);
         printf("\n");
     }
-    printf("\n");
     for (i = 0; i < maze->numRows; ++i) {
         free(s[i]);
     }
@@ -246,7 +263,8 @@ struct Array *Maze_path(const struct Maze *maze,
 
     for (i = 0; i < maze->numRows; ++i) {
         free(visited[i]);
+        free(parent[i]);
     }
-    free(visited);
+    free(parent);
     return path;
 }

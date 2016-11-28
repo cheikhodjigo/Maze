@@ -47,10 +47,6 @@ int main(int argc, char **argv) {
                                             arguments.numCols);
         if (strcmp(arguments.outputFormat, "text") == 0) {
             Maze_print(maze);
-            struct Array *path;
-            path = Maze_path(maze, 0, 0, maze->numRows - 1, maze->numCols - 1);
-            Array_print(path);
-            Array_delete(path);
         } else if (strcmp(arguments.outputFormat, "png") == 0) {
     	    Drawing_drawMaze(maze, arguments.outputFilename);
         }

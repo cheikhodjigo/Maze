@@ -21,6 +21,7 @@ struct Maze {
     unsigned int numCols;           // The number of cols
     struct Room **rooms;            // A matrix of all rooms
     struct RoomPartition partition; // A partition of the rooms
+    struct Array *path;             // The solution of the maze
 };
 
 // ---------------- //
