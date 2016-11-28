@@ -3,7 +3,30 @@
 ## Description
 
 Ce programme permet de générer aléatoirement des labyrinthes sur une grille
-carrée.
+carrée. Une fois compilé, l'exécutable principal est ``bin/tp3``. Un aperçu des
+options disponibles peut être obtenu comme suit :
+
+~~~
+ $ bin/tp3 --help                                                              
+Usage: (null) [--help] [--with-solution] [--num-rows VALUE] [--num-cols VALUE] 
+    [--output-format STRING] [--output-filename FILENAME]                      
+                                                                               
+Generates a random maze on the square grid.                                    
+                                                                               
+Optional arguments:                                                            
+  --help                   Show this help message and exit                     
+  --num-rows VALUE         The number of rows in the maze.                     
+                           The default value is 5.                             
+  --num-cols VALUE         The number of columns in the maze.                  
+                           The default value is 5.                             
+  --with-solution          Also displays solution in the maze.                 
+  --output-format STRING   Selects the ouput format (either "text" or "png").  
+                           The default format is "text".                       
+  --output-filename STRING The name of the output file.                        
+                           Mandatory for png format.                           
+                           If not specified, displays on stdout.               
+~~~
+                                                                               
 
 ## Auteur
 
@@ -65,7 +88,7 @@ produit un fichier `maze.png`, qui devrait ressembler à
 
 ## Plateformes supportées
 
-Testé sur MacOS 10.10.5 Yosemite.
+Testé sur MacOS 10.10.5 Yosemite et sur malt.labunix.uqam.ca.
 
 ## Dépendances
 
@@ -75,3 +98,8 @@ Testé sur MacOS 10.10.5 Yosemite.
 - [CUnit](http://cunit.sourceforge.net/), pour les tests unitaires. Cette
   bibliothèque doit être installée pour que la commande `make test` fonctionne
   correctement.
+
+## License
+
+Le contenu de ce projet est asujetti à la [licence
+GPLv3](https://www.gnu.org/licenses/gpl-3.0.en.html).
