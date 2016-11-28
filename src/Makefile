@@ -23,4 +23,4 @@ clean:
 test: $(TEST_EXEC)
 
 $(TEST_EXEC): $(AUXI_OBJS) $(TEST_OBJS)
-	$(CC) $(LFLAGS) -o $@ $(AUXI_OBJS) $(TEST_OBJS)
+	$(CC) $(LFLAGS) -lcunit -o $@ $(AUXI_OBJS) $(TEST_OBJS)
