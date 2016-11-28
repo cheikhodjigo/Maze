@@ -8,7 +8,7 @@ build:
     script:
         - make
 
-suite1:
+test:
     stage: test
     script:
         - make test

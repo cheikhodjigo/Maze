@@ -73,5 +73,5 @@ Testé sur MacOS 10.10.5 Yosemite.
   au format PNG. Cette bibliothèque doit être installée sur le système pour que
   le projet fonctionne.
 - [CUnit](http://cunit.sourceforge.net/), pour les tests unitaires. Cette
-  bibliothèque doit être installée sur le système pour que la commande `make
-  test` fonctionne correctement.
+  bibliothèque doit être installée pour que la commande `make test` fonctionne
+  correctement.
