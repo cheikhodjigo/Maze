@@ -45,11 +45,11 @@ détails). Par exemple, on peut modifier le nombre de rangées et de colonnes :
 
 ~~~
 $ bin/tp3 --num-rows 2 --num-cols 2
- +-+-+
- |   |
- + + +
- | | |
- +-+-+
++-+-+
+|   |
++ + +
+| | |
++-+-+
 ~~~
 
 Il est également possible de produire une image au format PNG. Par exemple, la
