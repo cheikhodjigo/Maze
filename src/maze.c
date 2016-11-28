@@ -17,9 +17,9 @@ struct RoomsTransition {
 void Maze_makeTransitions(struct RoomsTransition transitions[],
                           unsigned int numRows,
                           unsigned int numCols) {
-    int k = 0;
-    for (unsigned int i = 0; i < numRows; ++i) {
-        for (unsigned int j = 0; j < numCols; ++j) {
+    unsigned int i, j, k = 0;
+    for (i = 0; i < numRows; ++i) {
+        for (j = 0; j < numCols; ++j) {
             if (j < numCols - 1) {
                 transitions[k].i = i;
                 transitions[k].j = j;
@@ -39,7 +39,8 @@ void Maze_makeTransitions(struct RoomsTransition transitions[],
 void Maze_shuffleTransitions(struct RoomsTransition transitions[],
                              unsigned int numTransitions) {
     srand(time(NULL));
-    for (int k = 0; k < numTransitions; ++k) {
+    unsigned int k;
+    for (k = 0; k < numTransitions; ++k) {
         int i = rand() % numTransitions;
         int j = rand() % numTransitions;
         struct RoomsTransition temp = transitions[i];
@@ -51,7 +52,8 @@ void Maze_shuffleTransitions(struct RoomsTransition transitions[],
 void Maze_mergeRooms(struct Maze *maze,
                      struct RoomsTransition transitions[],
                      unsigned int numTransitions) {
-    for (unsigned int k = 0; k < numTransitions; ++k) {
+    unsigned int k;
+    for (k = 0; k < numTransitions; ++k) {
         unsigned int i1 = transitions[k].i;
         unsigned int j1 = transitions[k].j;
         bool horizontal = transitions[k].horizontal;
@@ -91,9 +93,10 @@ struct Maze *Maze_randomMaze(unsigned int numRows, unsigned int numCols) {
     maze->numRows = numRows;
     maze->numCols = numCols;
     maze->rooms = (struct Room**)malloc(numRows * sizeof(struct Room*));
-    for (unsigned int i = 0; i < numRows; ++i) {
+    unsigned int i, j;
+    for (i = 0; i < numRows; ++i) {
         maze->rooms[i] = (struct Room*)malloc(numCols * sizeof(struct Room));
-        for (unsigned int j = 0; j < numCols; ++j) {
+        for (j = 0; j < numCols; ++j) {
             maze->rooms[i][j].right = false;
             maze->rooms[i][j].up = false;
             maze->rooms[i][j].left = false;
@@ -108,7 +111,8 @@ struct Maze *Maze_randomMaze(unsigned int numRows, unsigned int numCols) {
 void Maze_free(struct Maze *maze) {
     assert(maze != NULL);
     RoomPartition_free(&maze->partition);
-    for (unsigned int i = 0; i < maze->numRows; ++i)
+    unsigned int i;
+    for (i = 0; i < maze->numRows; ++i)
         free(maze->rooms[i]);
     free(maze->rooms);
     free(maze);
@@ -116,22 +120,24 @@ void Maze_free(struct Maze *maze) {
 
 void Maze_print(const struct Maze *maze) {
     assert(maze != NULL);
-    for (unsigned int i = 0; i < maze->numRows; ++i) {
-        for (unsigned int j = 0; j < maze->numCols; ++j)
+    unsigned int i, j;
+    for (i = 0; i < maze->numRows; ++i) {
+        for (j = 0; j < maze->numCols; ++j)
             printf("+%c",  maze->rooms[i][j].up ?  ' ' : '-');
         printf("+\n");
-        for (unsigned int j = 0; j < maze->numCols; ++j)
+        for (j = 0; j < maze->numCols; ++j)
             printf("%c ", maze->rooms[i][j].left ? ' ' : '|');
         printf("|\n");
     }
-    for (unsigned int j = 0; j < maze->numCols; ++j)
+    for (j = 0; j < maze->numCols; ++j)
         printf("+-");
     printf("+\n");
 }
 
 bool Maze_areRoomsConsistent(const struct Maze *maze) {
-    for (unsigned int i = 0; i < maze->numRows; ++i) {
-        for (unsigned int j = 0; j < maze->numCols; ++j) {
+    unsigned int i, j;
+    for (i = 0; i < maze->numRows; ++i) {
+        for (j = 0; j < maze->numCols; ++j) {
             if (i < maze->numRows - 1 && maze->rooms[i][j].down !=
                                          maze->rooms[i+1][j].up)
                 return false;

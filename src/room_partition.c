@@ -22,9 +22,10 @@ struct RoomPartition RoomPartition_create(unsigned int numRows,
                                           unsigned int numColumns) {
     struct RoomPartition partition;
     partition.elements = (struct Element**)malloc(numRows * sizeof(struct Element*));
-    for (unsigned int i = 0; i < numRows; ++i) {
+    unsigned int i, j;
+    for (i = 0; i < numRows; ++i) {
         partition.elements[i] = (struct Element*)malloc(numColumns * sizeof(struct Element));
-        for (unsigned int j = 0; j < numColumns; ++j) {
+        for (j = 0; j < numColumns; ++j) {
             partition.elements[i][j].rank = 0;
             partition.elements[i][j].parent = &partition.elements[i][j];
         }
@@ -84,7 +85,8 @@ void RoomPartition_print(const struct RoomPartition *partition) {
 }
 
 void RoomPartition_free(struct RoomPartition *partition) {
-    for (unsigned int i = 0; i < partition->numRows; ++i) {
+    unsigned int i;
+    for (i = 0; i < partition->numRows; ++i) {
         free(partition->elements[i]);
     }
     free(partition->elements);
