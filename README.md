@@ -8,7 +8,7 @@ options disponibles peut être obtenu comme suit :
 
 ~~~
  $ bin/tp3 --help                                                              
-Usage: (null) [--help] [--with-solution] [--num-rows VALUE] [--num-cols VALUE] 
+Usage: bin/tp3 [--help] [--with-solution] [--num-rows VALUE] [--num-cols VALUE] 
     [--output-format STRING] [--output-filename FILENAME]                      
                                                                                
 Generates a random maze on the square grid.                                    
