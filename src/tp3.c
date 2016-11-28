@@ -5,6 +5,7 @@
 #include "parse_args.h"
 #include "maze.h"
 #include "room_partition.h"
+#include "drawing.h"
 
 void testMaze() {
     struct Maze *maze = Maze_randomMaze(8, 10);
@@ -32,7 +33,8 @@ int main(int argc, char **argv) {
     } else {
         struct Maze *maze = Maze_randomMaze(arguments.numRows,
                                             arguments.numCols);
-        Maze_print(maze);
+        //Maze_print(maze);
+    	Drawing_drawMaze(maze);
         return TP3_OK;
     }
 }

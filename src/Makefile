@@ -1,6 +1,6 @@
 CC = gcc
-CFLAGS = -Wall
-LFLAGS = 
+CFLAGS = -Wall `pkg-config --cflags cairo`
+LFLAGS = `pkg-config --libs cairo` 
 EXEC = tp3
 OBJS = $(patsubst %.c,%.o,$(wildcard *.c))
 
