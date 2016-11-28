@@ -3,6 +3,7 @@
 
 #include <stdbool.h>
 #include "room_partition.h"
+#include "array.h"
 
 // --------------- //
 // Data structures //
@@ -62,5 +63,25 @@ void Maze_print(const struct Maze *maze);
  * @return      True if and only if the rooms are consistent
  */
 bool Maze_areRoomsConsistent(const struct Maze *maze);
+
+/**
+ * Returns the unique path between the two given rooms.
+ *
+ * Since the maze is perfect by construction, there always exists such a path
+ * and it is unique. The path is returned as an ordered array of the successive
+ * rooms encountered.
+ * 
+ * @param maze    The maze
+ * @param room1i  The row number of the start room
+ * @param room1j  The column number of the start room
+ * @param room2i  The row number of the end room
+ * @param room2j  The column number of the end room
+ * @return        The resulting path
+ */
+struct Array *Maze_path(const struct Maze *maze,
+                        unsigned int room1i,
+                        unsigned int room1j,
+                        unsigned int room2i,
+                        unsigned int room2j);
 
 #endif

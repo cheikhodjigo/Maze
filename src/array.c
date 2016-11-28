@@ -4,18 +4,19 @@
 #include <assert.h>
 #include "array.h"
 
-struct Array Array_create() {
-    struct Array array;
-    array.values = (struct uiPair*)malloc(sizeof(struct uiPair));
-    array.length = 0;
-    array.capacity = 1;
+struct Array *Array_create() {
+    struct Array *array = (struct Array*)malloc(sizeof(struct Array));
+    array->values = (struct uiPair*)malloc(sizeof(struct uiPair));
+    array->length = 0;
+    array->capacity = 1;
     return array;
 }
 
 void Array_append(struct Array *array, const struct uiPair *pair) {
     if (array->length >= array->capacity) {
         array->capacity *= 2;
-        realloc(array->values, array->capacity * sizeof(struct uiPair));
+        struct uiPair *newArray = realloc(array->values, array->capacity * sizeof(struct uiPair));
+        array->values = newArray;
     }
     array->values[array->length] = *pair;
     ++array->length;
@@ -30,11 +31,12 @@ void Array_print(const struct Array *array) {
     int i;
     printf("[");
     for (i = 0; i < array->length; ++i) {
-        printf(" (%d, %d)", array->values[i].i, array->values[i].j);
+        printf(" (%d, %d)", array->values[i].first, array->values[i].second);
     }
     printf(" ]");
 }
 
 void Array_delete(struct Array *array) {
     free(array->values);
+    free(array);
 }

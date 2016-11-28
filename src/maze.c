@@ -3,6 +3,8 @@
 #include <stdio.h>
 #include <assert.h>
 #include <time.h>
+#include "array.h"
+#include "utils.h"
 
 // ----------------- //
 // Private functions //
@@ -147,4 +149,80 @@ bool Maze_areRoomsConsistent(const struct Maze *maze) {
         }
     }
     return true;
+}
+
+// ---- //
+// Path //
+// ---- //
+
+void Maze_visit(const struct Maze *maze,
+                int currenti,
+                int currentj,
+                int previousi,
+                int previousj,
+                bool **visited,
+                struct uiPair **parent) {
+    if (!visited[currenti][currentj]) {
+        visited[currenti][currentj] = true;
+        parent[currenti][currentj].first = previousi;
+        parent[currenti][currentj].second = previousj;
+
+        // Going right
+        if (maze->rooms[currenti][currentj].right) {
+            Maze_visit(maze, currenti, currentj + 1, currenti, currentj, visited, parent);
+        }
+        // Going left
+        if (maze->rooms[currenti][currentj].left) {
+            Maze_visit(maze, currenti, currentj - 1, currenti, currentj, visited, parent);
+        }
+        // Going up
+        if (maze->rooms[currenti][currentj].up) {
+            Maze_visit(maze, currenti - 1, currentj, currenti, currentj, visited, parent);
+        }
+        // Going down
+        if (maze->rooms[currenti][currentj].down) {
+            Maze_visit(maze, currenti + 1, currentj, currenti, currentj, visited, parent);
+        }
+    }
+}
+
+struct Array *Maze_path(const struct Maze *maze,
+                        unsigned int room1i,
+                        unsigned int room1j,
+                        unsigned int room2i,
+                        unsigned int room2j) {
+    bool **visited = (bool**)malloc(maze->numRows * sizeof(bool*));
+    struct uiPair **parent = (struct uiPair**)malloc(maze->numRows * sizeof(struct uiPair*));
+    unsigned int i, j;
+    for (i = 0; i < maze->numRows; ++i) {
+        visited[i] = (bool*)malloc(maze->numCols * sizeof(bool));
+        parent[i] = (struct uiPair*)malloc(maze->numCols * sizeof(struct uiPair));
+        for (j = 0; j < maze->numCols; ++j) {
+            visited[i][j] = false;
+        }
+    }
+
+    Maze_visit(maze, room2i, room2j, room2i, room2j, visited, parent);
+
+    struct Array *path = Array_create();
+    struct uiPair pair;
+    i = room1i; j = room1j;
+    do {
+        pair.first = i;
+        pair.second = j;
+        Array_append(path, &pair);
+        unsigned int ip = parent[i][j].first;
+        unsigned int jp = parent[i][j].second;
+        i = ip;
+        j = jp;
+    } while (i != room2i || j != room2j);
+    pair.first = room2i;
+    pair.second = room2j;
+    Array_append(path, &pair);
+
+    for (i = 0; i < maze->numRows; ++i) {
+        free(visited[i]);
+    }
+    free(visited);
+    return path;
 }

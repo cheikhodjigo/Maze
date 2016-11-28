@@ -1,6 +1,15 @@
 #ifndef UTILS_H
 #define UTILS_H
 
+// --------------- //
+// Data structures //
+// --------------- //
+
+struct uiPair {          // Unsigned integer pair
+    unsigned int first;  // The first element
+    unsigned int second; // The second element
+};
+
 /**
  * Copies the string to lower case
  *

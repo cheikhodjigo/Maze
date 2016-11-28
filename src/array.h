@@ -1,14 +1,13 @@
+#ifndef ARRAY_H
+#define ARRAY_H
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include "utils.h"
 
 // Types
 // -----
-
-struct uiPair {     // Unsigned integer pair
-    unsigned int i; // The first element
-    unsigned int j; // The second element
-};
 
 struct Array {
     struct uiPair *values; // The values
@@ -28,7 +27,7 @@ struct Array {
  *
  * @return  The empty array
  */
-struct Array Array_create();
+struct Array *Array_create();
 
 /**
  * Appends an element to an array.
@@ -62,3 +61,5 @@ void Array_print(const struct Array *array);
  * @param a  Le tableau
  */
 void Array_delete(struct Array *array);
+
+#endif

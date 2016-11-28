@@ -27,30 +27,33 @@ void testPartition() {
 }
 
 void testArray() {
-    struct Array a = Array_create();
+    struct Array *array = Array_create();
     struct uiPair pair;
-    pair.i = 2; pair.j = 3;
-    Array_append(&a, &pair);
-    pair.i = 5; pair.j = 7;
-    Array_append(&a, &pair);
-    Array_print(&a);
-    Array_delete(&a);
+    pair.first = 2; pair.second = 3;
+    Array_append(array, &pair);
+    pair.first = 5; pair.second = 7;
+    Array_append(array, &pair);
+    Array_print(array);
+    Array_delete(array);
 }
 
 int main(int argc, char **argv) {
-    testArray();
-    //struct Arguments arguments = parseArguments(argc, argv);
-    //if (arguments.status != TP3_OK) {
-    //    //TODO: Error message?
-    //    return arguments.status;
-    //} else {
-    //    struct Maze *maze = Maze_randomMaze(arguments.numRows,
-    //                                        arguments.numCols);
-    //    if (strcmp(arguments.outputFormat, "text") == 0) {
-    //        Maze_print(maze);
-    //    } else if (strcmp(arguments.outputFormat, "png") == 0) {
-    //	    Drawing_drawMaze(maze, arguments.outputFilename);
-    //    }
-    //}
-    //return TP3_OK;
+    struct Arguments arguments = parseArguments(argc, argv);
+    if (arguments.status != TP3_OK) {
+        //TODO: Error message?
+        return arguments.status;
+    } else {
+        struct Maze *maze = Maze_randomMaze(arguments.numRows,
+                                            arguments.numCols);
+        if (strcmp(arguments.outputFormat, "text") == 0) {
+            Maze_print(maze);
+            struct Array *path;
+            path = Maze_path(maze, 0, 0, maze->numRows - 1, maze->numCols - 1);
+            Array_print(path);
+            Array_delete(path);
+        } else if (strcmp(arguments.outputFormat, "png") == 0) {
+    	    Drawing_drawMaze(maze, arguments.outputFilename);
+        }
+    }
+    return TP3_OK;
 }
