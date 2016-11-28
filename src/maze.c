@@ -85,6 +85,24 @@ void Maze_makePerfect(struct Maze *maze) {
     free(transitions);
 };
 
+void Maze_toString(const struct Maze *maze,
+                   char** s) {
+    unsigned int i, j;
+    for (i = 0; i < maze->numRows; ++i) {
+        for (j = 0; j < maze->numCols; ++j) {
+            s[2*i + 1][2*j + 1] = ' ';
+            s[2*i][2*j] = '+';
+            s[2*i + 2][2*j] = '+';
+            s[2*i][2*j + 2] = '+';
+            s[2*i + 2][2*j + 2] = '+';
+            s[2*i][2*j + 1] = maze->rooms[i][j].up ?  ' ' : '-';
+            s[2*i + 1][2*j] = maze->rooms[i][j].left ?  ' ' : '|';
+            s[2*i + 1][2*j + 2] = maze->rooms[i][j].right ?  ' ' : '|';
+            s[2*i + 2][2*j + 1] = maze->rooms[i][j].down ?  ' ' : '-';
+        }
+    }
+}
+
 // ---------------- //
 // Public functions //
 // ---------------- //
@@ -123,17 +141,23 @@ void Maze_free(struct Maze *maze) {
 void Maze_print(const struct Maze *maze) {
     assert(maze != NULL);
     unsigned int i, j;
-    for (i = 0; i < maze->numRows; ++i) {
-        for (j = 0; j < maze->numCols; ++j)
-            printf("+%c",  maze->rooms[i][j].up ?  ' ' : '-');
-        printf("+\n");
-        for (j = 0; j < maze->numCols; ++j)
-            printf("%c ", maze->rooms[i][j].left ? ' ' : '|');
-        printf("|\n");
+    unsigned int height = 2 * maze->numRows + 1;
+    unsigned int width = 2 * maze->numCols + 1;
+    char **s = (char**)malloc(height * sizeof(char*));
+    for (i = 0; i < height; ++i) {
+        s[i] = (char*)malloc(width * sizeof(char));
     }
-    for (j = 0; j < maze->numCols; ++j)
-        printf("+-");
-    printf("+\n");
+    Maze_toString(maze, s);
+    for (i = 0; i < height; ++i) {
+        for (j = 0; j < width; ++j)
+            printf("%c",  s[i][j]);
+        printf("\n");
+    }
+    printf("\n");
+    for (i = 0; i < maze->numRows; ++i) {
+        free(s[i]);
+    }
+    free(s);
 }
 
 bool Maze_areRoomsConsistent(const struct Maze *maze) {
