@@ -18,7 +18,7 @@ enum Error castInteger(char *s, int *value) {
 }
 
 struct Arguments parseArguments(int argc, char **argv) {
-    bool showHelp = false, withSolution = false;
+    bool showHelp = false;
     struct Arguments arguments;
 
     // Default argument
@@ -27,11 +27,12 @@ struct Arguments parseArguments(int argc, char **argv) {
     arguments.status = TP3_OK;
     arguments.numRows = NUM_ROWS_DEFAULT;
     arguments.numCols = NUM_COLS_DEFAULT;
+    arguments.withSolution = false;
 
     struct option longOpts[] = {
         // Set flag
         {"help",            no_argument,       (int*)&showHelp, true},
-        {"with-solution",   no_argument,       (int*)&withSolution, true},
+        {"with-solution",   no_argument,       0, 'w'},
         // Don't set flag
         {"num-rows",        required_argument, 0, 'r'},
         {"num-cols",        required_argument, 0, 'c'},
@@ -43,9 +44,11 @@ struct Arguments parseArguments(int argc, char **argv) {
     // Parse options
     while (true) {
         int option_index = 0;
-        int c = getopt_long(argc, argv, "rcfo", longOpts, &option_index);
+        int c = getopt_long(argc, argv, "wrcfo", longOpts, &option_index);
         if (c == -1) break;
         switch (c) {
+            case 'w': arguments.withSolution = true;
+                      break;
             case 'r': arguments.status = castInteger(optarg, &arguments.numRows);
                       break;
             case 'c': arguments.status = castInteger(optarg, &arguments.numCols);
@@ -78,10 +81,9 @@ struct Arguments parseArguments(int argc, char **argv) {
         printUsage(argv);
         arguments.status = TP3_ERROR_PNG_FORMAT_WITHOUT_FILENAME;
     } else if (strcmp(arguments.outputFormat, "png") == 0
-            && withSolution) {
+            && arguments.withSolution) {
         printf("Error: printing solution with png format is not implemented\n");
         arguments.status = TP3_ERROR_NOT_IMPLEMENTED;
     }
-    arguments.withSolution = withSolution;
     return arguments;
 }
