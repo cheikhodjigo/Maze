@@ -33,7 +33,7 @@ int main(int argc, char **argv) {
     } else {
         struct Maze *maze = Maze_randomMaze(arguments.numRows,
                                             arguments.numCols);
-        //Maze_print(maze);
+        Maze_print(maze);
     	Drawing_drawMaze(maze);
         return TP3_OK;
     }
