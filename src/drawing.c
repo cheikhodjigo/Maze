@@ -11,7 +11,7 @@ void Drawing_drawRoom(cairo_t *cr,
                       unsigned int i,
                       unsigned int j) {
     // Top wall
-    cairo_set_line_width(cr, 1);
+    cairo_set_line_width(cr, ROW_OFFSET);
     cairo_move_to(cr,
                   j * (ROOM_WIDTH + COL_OFFSET),
                   i * (ROOM_WIDTH + ROW_OFFSET));
@@ -22,7 +22,7 @@ void Drawing_drawRoom(cairo_t *cr,
                   i * (ROOM_HEIGHT + ROW_OFFSET));
     cairo_stroke(cr);
     // Left wall
-    cairo_set_line_width(cr, 1);
+    cairo_set_line_width(cr, COL_OFFSET);
     cairo_move_to(cr,
                   j * (ROOM_WIDTH + COL_OFFSET),
                   i * (ROOM_WIDTH + ROW_OFFSET));
@@ -33,7 +33,7 @@ void Drawing_drawRoom(cairo_t *cr,
                   (i + 1) * (ROOM_HEIGHT + ROW_OFFSET));
     cairo_stroke(cr);
     // Right wall
-    cairo_set_line_width(cr, 1);
+    cairo_set_line_width(cr, COL_OFFSET);
     cairo_move_to(cr,
                   (j + 1) * (ROOM_WIDTH + COL_OFFSET),
                   i * (ROOM_WIDTH + ROW_OFFSET));
@@ -44,7 +44,7 @@ void Drawing_drawRoom(cairo_t *cr,
                   (i + 1) * (ROOM_HEIGHT + ROW_OFFSET));
     cairo_stroke(cr);
     // Down wall
-    cairo_set_line_width(cr, 1);
+    cairo_set_line_width(cr, ROW_OFFSET);
     cairo_move_to(cr,
                   j * (ROOM_WIDTH + COL_OFFSET),
                   (i + 1) * (ROOM_WIDTH + ROW_OFFSET));
