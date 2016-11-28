@@ -2,16 +2,25 @@ CC = gcc
 CFLAGS = -Wall `pkg-config --cflags cairo`
 LFLAGS = `pkg-config --libs cairo` 
 EXEC = tp3
-OBJS = $(patsubst %.c,%.o,$(wildcard *.c))
+TEST_IMPL = $(wildcard test*.c)
+AUXI_IMPL = $(filter-out $(TEST_IMPL) $(EXEC).c,$(wildcard *.c))
+AUXI_OBJS = $(patsubst %.c,%.o,$(AUXI_IMPL))
+TEST_OBJS = $(patsubst %.c,%.o,$(TEST_IMPL))
+TEST_EXEC = $(patsubst %.c,%,$(TEST_IMPL))
 
-$(EXEC): $(OBJS)
-	$(CC) $(LFLAGS) -o $(EXEC) $(OBJS)
+$(EXEC): $(AUXI_OBJS) $(EXEC).o
+	$(CC) $(LFLAGS) -o $(EXEC) $(EXEC).o $(AUXI_OBJS)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -o $@ -c $<
 
-.PHONY: clean
+.PHONY: clean test
 
 clean:
 	rm -f *.o
 	rm -rf $(EXEC)
+
+test: $(TEST_EXEC)
+
+$(TEST_EXEC): $(AUXI_OBJS) $(TEST_OBJS)
+	$(CC) $(LFLAGS) -o $@ $(AUXI_OBJS) $(TEST_OBJS)

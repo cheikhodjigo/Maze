@@ -1,4 +1,5 @@
 *.o
 *.png
 tp3
-
+test*
+!test*.c
