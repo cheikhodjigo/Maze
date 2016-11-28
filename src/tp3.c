@@ -10,7 +10,7 @@
 
 void testMaze() {
     struct Maze *maze = Maze_randomMaze(8, 10);
-    Maze_print(maze);
+    Maze_print(maze, false);
     printf("Are rooms consistent? %s\n", Maze_areRoomsConsistent(maze) ? "yes" : "no");
     Maze_free(maze);
 }
@@ -46,7 +46,7 @@ int main(int argc, char **argv) {
         struct Maze *maze = Maze_randomMaze(arguments.numRows,
                                             arguments.numCols);
         if (strcmp(arguments.outputFormat, "text") == 0) {
-            Maze_print(maze);
+            Maze_print(maze, arguments.withSolution);
         } else if (strcmp(arguments.outputFormat, "png") == 0) {
     	    Drawing_drawMaze(maze, arguments.outputFilename);
         }

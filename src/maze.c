@@ -155,7 +155,7 @@ void Maze_free(struct Maze *maze) {
     Array_delete(maze->path);
 }
 
-void Maze_print(const struct Maze *maze) {
+void Maze_print(const struct Maze *maze, bool withSolution) {
     assert(maze != NULL);
     unsigned int i, j;
     unsigned int height = 2 * maze->numRows + 1;
@@ -165,7 +165,7 @@ void Maze_print(const struct Maze *maze) {
         s[i] = (char*)malloc(width * sizeof(char));
     }
     Maze_toString(maze, s);
-    Maze_addSolution(maze, s);
+    if (withSolution) Maze_addSolution(maze, s);
     for (i = 0; i < height; ++i) {
         for (j = 0; j < width; ++j)
             printf("%c",  s[i][j]);

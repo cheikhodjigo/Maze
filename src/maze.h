@@ -50,9 +50,10 @@ void Maze_free(struct Maze *maze);
 /**
  * Prints the given maze to stdout.
  *
- * @param maze  The maze to print
+ * @param maze          The maze to print
+ * @param withSolution  If true, then the solution is printed
  */
-void Maze_print(const struct Maze *maze);
+void Maze_print(const struct Maze *maze, bool withSolution);
 
 /**
  * Returns true if the rooms are consistent.
