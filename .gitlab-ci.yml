@@ -1,0 +1,15 @@
+before_script:
+    - apt-get update -qq
+    - apt-get -y install libcunit1 libcunit1-doc libcunit1-dev
+    - apt-get -y install libcairo2-dev
+
+build:
+    stage: build
+    script:
+        - make
+
+suite1:
+    stage: test
+    script:
+        - make test
+
