@@ -33,8 +33,11 @@ int main(int argc, char **argv) {
     } else {
         struct Maze *maze = Maze_randomMaze(arguments.numRows,
                                             arguments.numCols);
-        Maze_print(maze);
-    	Drawing_drawMaze(maze);
-        return TP3_OK;
+        if (strcmp(arguments.outputFormat, "text") == 0) {
+            Maze_print(maze);
+        } else if (strcmp(arguments.outputFormat, "png") == 0) {
+    	    Drawing_drawMaze(maze, arguments.outputFilename);
+        }
     }
+    return TP3_OK;
 }

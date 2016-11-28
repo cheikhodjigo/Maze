@@ -23,6 +23,7 @@ struct Arguments parseArguments(int argc, char **argv) {
 
     // Default argument
     strcpy(arguments.outputFormat, "text");
+    strcpy(arguments.outputFilename, "");
     arguments.status = TP3_OK;
     arguments.numRows = NUM_ROWS_DEFAULT;
     arguments.numCols = NUM_COLS_DEFAULT;
@@ -65,10 +66,15 @@ struct Arguments parseArguments(int argc, char **argv) {
         printUsage(argv);
         arguments.status = TP3_ERROR_TOO_MANY_ARGUMENTS;
     } else if (strcmp(arguments.outputFormat, "text") != 0
-            && strcmp(arguments.outputFormat, "png")) {
+            && strcmp(arguments.outputFormat, "png") != 0) {
         printf("Error: format %s not supported\n", arguments.outputFormat);
         printUsage(argv);
         arguments.status = TP3_ERROR_FORMAT_NOT_SUPPORTED;
+    } else if (strcmp(arguments.outputFormat, "png") == 0
+            && strcmp(arguments.outputFilename, "") == 0) {
+        printf("Error: output filename is mandatory with png format\n");
+        printUsage(argv);
+        arguments.status = TP3_ERROR_PNG_FORMAT_WITHOUT_FILENAME;
     }
     return arguments;
 }

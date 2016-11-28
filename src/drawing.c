@@ -56,7 +56,8 @@ void Drawing_drawRoom(cairo_t *cr,
     cairo_stroke(cr);
 }
 
-void Drawing_drawMaze(const struct Maze *maze) {
+void Drawing_drawMaze(const struct Maze *maze,
+                      const char *outputFilename) {
     cairo_surface_t *surface =
         cairo_image_surface_create(CAIRO_FORMAT_ARGB32,
         COL_OFFSET + maze->numCols * (ROOM_WIDTH + COL_OFFSET),
@@ -70,6 +71,6 @@ void Drawing_drawMaze(const struct Maze *maze) {
         }
     }
     cairo_destroy(cr);
-    cairo_surface_write_to_png(surface, "maze.png");
+    cairo_surface_write_to_png(surface, outputFilename);
     cairo_surface_destroy(surface);
 }
