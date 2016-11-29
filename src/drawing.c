@@ -1,11 +1,23 @@
+#include "drawing.h"
 #include <cairo.h>
-#include "maze.h"
 
 #define ROOM_WIDTH 30
 #define ROOM_HEIGHT 30
 #define ROW_OFFSET 2
 #define COL_OFFSET 2
 
+// ----------------- //
+// Private functions //
+// ----------------- //
+
+/**
+ * Draws the given room on a surface.
+ *
+ * @param cr    The Cairo surface on which we draw
+ * @param room  The room to draw
+ * @param i     The row number of the room
+ * @param j     The column number of the room
+ */
 void Drawing_drawRoom(cairo_t *cr,
                       const struct Room *room,
                       unsigned int i,
@@ -55,6 +67,10 @@ void Drawing_drawRoom(cairo_t *cr,
                   (i + 1) * (ROOM_HEIGHT + ROW_OFFSET));
     cairo_stroke(cr);
 }
+
+// ---------------- //
+// Public functions //
+// ---------------- //
 
 void Drawing_drawMaze(const struct Maze *maze,
                       const char *outputFilename) {
