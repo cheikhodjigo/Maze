@@ -20,7 +20,7 @@ clean:
 	rm -f *.o
 	rm -rf $(EXEC)
 
-test: $(TEST_EXEC)
+test: $(TEST_OBJS) $(TEST_EXEC)
 
-$(TEST_EXEC): $(AUXI_OBJS) $(TEST_OBJS)
-	$(CC) $(LFLAGS) -lcunit -o $@ $(AUXI_OBJS) $(TEST_OBJS)
+$(TEST_EXEC): $(AUXI_OBJS)
+	$(CC) $(LFLAGS) -lcunit -o $@ $@.o $(AUXI_OBJS)
