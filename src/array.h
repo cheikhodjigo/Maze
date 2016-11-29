@@ -30,7 +30,7 @@ struct Array {
 struct Array *Array_create();
 
 /**
- * Appends an element to an array.
+ * Appends an element to the end of an array.
  *
  * The array is automatically resized if its current size is not sufficient.
  *
