@@ -17,7 +17,9 @@ int main(int argc, char **argv) {
         if (strcmp(arguments.outputFormat, "text") == 0) {
             Maze_print(maze, arguments.withSolution);
         } else if (strcmp(arguments.outputFormat, "png") == 0) {
-    	    Drawing_drawMaze(maze, arguments.outputFilename);
+    	    Drawing_drawMaze(maze,
+                             arguments.outputFilename,
+                             arguments.wallsColor);
         }
     }
     return TP3_OK;

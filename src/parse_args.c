@@ -12,6 +12,7 @@
 #include <getopt.h>
 #include "parse_args.h"
 #include "utils.h"
+#include "color.h"
 
 // -------------- //
 // Private method //
@@ -102,14 +103,13 @@ struct Arguments parseArguments(int argc, char **argv) {
         printf("Error: output filename is mandatory with png format\n");
         printUsage(argv);
         arguments.status = TP3_ERROR_PNG_FORMAT_WITHOUT_FILENAME;
-    } else if (strcmp(arguments.wallsColor, "black") != 0) {
-        printf("Error: Colors other than black are not supported yet\n");
-        printUsage(argv);
-        arguments.status = TP3_ERROR_NOT_IMPLEMENTED;
     } else if (strcmp(arguments.outputFormat, "png") == 0
             && arguments.withSolution) {
         printf("Error: printing solution with png format is not implemented\n");
         arguments.status = TP3_ERROR_NOT_IMPLEMENTED;
+    } else if (!Color_isNamedColor(arguments.wallsColor)) {
+        printf("Error: the color \"%s\" is not recognized\n", arguments.wallsColor);
+        arguments.status = TP3_ERROR_INVALID_COLOR;
     }
     return arguments;
 }

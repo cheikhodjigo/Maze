@@ -17,8 +17,11 @@
  * @param maze            The maze whose picture is produced
  * @param outputFilename  The name of the output file
  *                        (should have a .png extension)
+ * @param wallsColor      The name of the walls color
+ *                        (one of the 16 basic colors)
  */
 void Drawing_drawMaze(const struct Maze* maze,
-                      const char *outputFilename);
+                      const char *outputFilename,
+                      const char *wallsColor);
 
 #endif
