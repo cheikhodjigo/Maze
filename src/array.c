@@ -28,7 +28,7 @@ const struct uiPair *Array_get(const struct Array *array, unsigned int i) {
 }
 
 void Array_print(const struct Array *array) {
-    int i;
+    unsigned int i;
     printf("[");
     for (i = 0; i < array->length; ++i) {
         printf(" (%d, %d)", array->values[i].first, array->values[i].second);
