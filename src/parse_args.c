@@ -29,6 +29,7 @@ struct Arguments parseArguments(int argc, char **argv) {
     // Default argument
     strcpy(arguments.outputFormat, "text");
     strcpy(arguments.outputFilename, "");
+    strcpy(arguments.wallsColor, "black");
     arguments.status = TP3_OK;
     arguments.numRows = NUM_ROWS_DEFAULT;
     arguments.numCols = NUM_COLS_DEFAULT;
@@ -37,10 +38,11 @@ struct Arguments parseArguments(int argc, char **argv) {
     struct option longOpts[] = {
         // Set flag
         {"help",            no_argument,       (int*)&showHelp, true},
-        {"with-solution",   no_argument,       0, 'w'},
+        {"with-solution",   no_argument,       0, 's'},
         // Don't set flag
         {"num-rows",        required_argument, 0, 'r'},
         {"num-cols",        required_argument, 0, 'c'},
+        {"walls-color",     required_argument, 0, 'w'},
         {"output-format",   required_argument, 0, 'f'},
         {"output-filename", required_argument, 0, 'o'},
         {0, 0, 0, 0}
@@ -49,14 +51,16 @@ struct Arguments parseArguments(int argc, char **argv) {
     // Parse options
     while (true) {
         int option_index = 0;
-        int c = getopt_long(argc, argv, "wrcfo", longOpts, &option_index);
+        int c = getopt_long(argc, argv, "srcwfo", longOpts, &option_index);
         if (c == -1) break;
         switch (c) {
-            case 'w': arguments.withSolution = true;
+            case 's': arguments.withSolution = true;
                       break;
             case 'r': arguments.status = castInteger(optarg, &arguments.numRows);
                       break;
             case 'c': arguments.status = castInteger(optarg, &arguments.numCols);
+                      break;
+            case 'w': strncpyLower(arguments.wallsColor, optarg, COLOR_LENGTH);
                       break;
             case 'f': strncpyLower(arguments.outputFormat, optarg, FORMAT_LENGTH);
                       break;
@@ -87,6 +91,10 @@ struct Arguments parseArguments(int argc, char **argv) {
         printf("Error: output filename is mandatory with png format\n");
         printUsage(argv);
         arguments.status = TP3_ERROR_PNG_FORMAT_WITHOUT_FILENAME;
+    } else if (strcmp(arguments.wallsColor, "black") != 0) {
+        printf("Error: Colors other than black are not supported yet\n");
+        printUsage(argv);
+        arguments.status = TP3_ERROR_NOT_IMPLEMENTED;
     } else if (strcmp(arguments.outputFormat, "png") == 0
             && arguments.withSolution) {
         printf("Error: printing solution with png format is not implemented\n");

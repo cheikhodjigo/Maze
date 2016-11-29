@@ -6,6 +6,7 @@
 
 #define FORMAT_LENGTH 5
 #define FILENAME_LENGTH 20
+#define COLOR_LENGTH 15
 #define NUM_ROWS_DEFAULT 5
 #define NUM_COLS_DEFAULT 5
 #define USAGE "\
@@ -21,6 +22,10 @@ Optional arguments:\n\
   --num-cols VALUE         The number of columns in the maze.\n\
                            The default value is 5.\n\
   --with-solution          Also displays solution in the maze.\n\
+  --walls-color VALUE      The color of the walls in the maze (e.g. \"navy\").\n\
+                           The name must be one of the 16 basic HTML colors.\n\
+                           Defaults to \"black\". The option is ignored if the\n\
+                           ouput format is \"text\".\n\
   --output-format STRING   Selects the ouput format (either \"text\" or \"png\").\n\
                            The default format is \"text\".\n\
   --output-filename STRING The name of the output file.\n\
@@ -46,6 +51,7 @@ struct Arguments {
     bool withSolution;                    // Displays solution?
     char outputFormat[FORMAT_LENGTH];     // The output format
     char outputFilename[FILENAME_LENGTH]; // The output filename
+    char wallsColor[COLOR_LENGTH];        // The color of the walls
     enum Error status;                    // The status of the parsing
 };
 
