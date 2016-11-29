@@ -8,6 +8,7 @@ void test_append() {
     Array_append(array, &pair);
     pair.first = 5; pair.second = 7;
     Array_append(array, &pair);
+    CU_ASSERT(array->length == 2);
     CU_ASSERT(Array_get(array, 0)->first == 2);
     CU_ASSERT(Array_get(array, 0)->second == 3);
     CU_ASSERT(Array_get(array, 1)->first == 5);

@@ -25,7 +25,7 @@ struct Array {
  * Warning: Each call to ``arrayCreate()`` must be paired with a call to the
  * ``arrayDelete()`` function.
  *
- * @return  The empty array
+ * @return  An empty array
  */
 struct Array *Array_create();
 
@@ -56,9 +56,9 @@ const struct uiPair *Array_get(const struct Array *array, unsigned int i);
 void Array_print(const struct Array *array);
 
 /**
- * Deletes un tableau dynamique.
+ * Deletes an array.
  *
- * @param a  Le tableau
+ * @param array  The array do delete
  */
 void Array_delete(struct Array *array);
 
