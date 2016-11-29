@@ -46,8 +46,8 @@ L'exécutable se trouve dans le répertoire `bin`. Il suffit ensuite d'entrer
 
 ## Fonctionnement
 
-Pour lancer le programme, il suffit d'entrer `bin/tp3`, qui affiche par défaut
-un labyrinthe de dimensions 5 par 5 sur `stdout` :
+Par défaut, la commande `bin/tp3` affiche un labyrinthe de dimensions 5 par 5
+sur `stdout` :
 
 ~~~
 +-+-+-+-+-+
@@ -75,8 +75,28 @@ $ bin/tp3 --num-rows 2 --num-cols 2
 +-+-+
 ~~~
 
-Il est également possible de produire une image au format PNG. Par exemple, la
-commande
+Il est également possible d'afficher la solution du labyrinthe, en supposant
+qu'on commence en haut à gauche et qu'on termine en bas à droite :
+
+~~~
+$ bin/tp3 --num-rows 6 --num-cols 8 --with-solution
++-+-+-+-+-+-+-+-+
+|X|XXXXXXXXXXXXX|
++X+X+-+-+ +-+-+X+
+|XXX  |   |   |X|
++ +-+-+-+-+-+ +X+
+|     | |      X|
++-+ + + +-+-+-+X+
+| | |   |   |  X|
++ + + +-+-+ +-+X+
+|   |     |    X|
++ +-+ + +-+ + +X+
+| |   | |   | |X|
++-+-+-+-+-+-+-+-+
+~~~
+
+Finalement, il est également possible de produire une image au format PNG,
+grâce à la bibliothèque [Cairo](http://cairo.org/). Par exemple, la commande
 
 ~~~
 $ bin/tp3 --num-rows 4 --num-cols 7 --output-format png --output-filename maze.png
@@ -101,5 +121,4 @@ Testé sur MacOS 10.10.5 Yosemite et sur malt.labunix.uqam.ca.
 
 ## License
 
-Le contenu de ce projet est asujetti à la [licence
-GPLv3](https://www.gnu.org/licenses/gpl-3.0.en.html).
+Le contenu de ce projet est sous [licence GPLv3](https://www.gnu.org/licenses/gpl-3.0.en.html).
