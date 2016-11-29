@@ -21,7 +21,7 @@
 }
 
 @test "Format png" {
-  run bin/tp3 --output-format png --output-filename maze.png
+  run bin/tp3 --output-format png --output-filename /tmp/maze.png
   [ "$status" -eq 0 ]
 }
 
@@ -51,16 +51,16 @@
 }
 
 @test "Black color working" {
-  run bin/tp3 --walls-color black --output-format png --output-filename maze.png
+  run bin/tp3 --walls-color black --output-format png --output-filename /tmp/maze.png
   [ "$status" -eq 0 ]
 }
 
 @test "Colors other than black not implemented" {
-  run bin/tp3 --walls-color blue --output-format png --output-filename maze.png
+  run bin/tp3 --walls-color blue --output-format png --output-filename /tmp/maze.png
   [ "$status" -eq 6 ]
 }
 
 @test "Format png with solution not implemented" {
-  run bin/tp3 --with-solution --output-format png --output-filename maze.png
+  run bin/tp3 --with-solution --output-format png --output-filename /tmp/maze.png
   [ "$status" -eq 6 ]
 }
