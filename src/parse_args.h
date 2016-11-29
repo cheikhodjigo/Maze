@@ -16,7 +16,7 @@ Usage: %s [--help] [--with-solution] [--num-rows VALUE] [--num-cols VALUE]\n\
 Generates a random maze on the square grid.\n\
 \n\
 Optional arguments:\n\
-  --help                   Show this help message and exit\n\
+  --help                   Shows this help message and exit\n\
   --num-rows VALUE         The number of rows in the maze.\n\
                            The default value is 5.\n\
   --num-cols VALUE         The number of columns in the maze.\n\

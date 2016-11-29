@@ -37,7 +37,7 @@ struct Arguments parseArguments(int argc, char **argv) {
 
     struct option longOpts[] = {
         // Set flag
-        {"help",            no_argument,       (int*)&showHelp, true},
+        {"help",            no_argument,       0, 'h'},
         {"with-solution",   no_argument,       0, 's'},
         // Don't set flag
         {"num-rows",        required_argument, 0, 'r'},
@@ -51,9 +51,11 @@ struct Arguments parseArguments(int argc, char **argv) {
     // Parse options
     while (true) {
         int option_index = 0;
-        int c = getopt_long(argc, argv, "srcwfo", longOpts, &option_index);
+        int c = getopt_long(argc, argv, "hsrcwfo", longOpts, &option_index);
         if (c == -1) break;
         switch (c) {
+            case 'h': showHelp = true;
+                      break;
             case 's': arguments.withSolution = true;
                       break;
             case 'r': arguments.status = castInteger(optarg, &arguments.numRows);
