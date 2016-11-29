@@ -1,3 +1,24 @@
+/**
+ * File room_partition.h
+ *
+ * Implements the disjoint-set data structure for representing connected rooms.
+ * The usual services are available:
+ *
+ * - Creating a trivial disjoint-set, where each room is in its own component
+ *   (`RoomPartition_create``);
+ * - Merging two components of given rooms (``RoomPartition_merge``). In other
+ *   words, if there is no wall between two rooms, then they are connected and
+ *   all rooms connected to them are also connected.
+ * - Checking if two rooms are connected (``RoomPartition_areInSameClass``);
+ * - Counting the number of classes, i.e. the number of groups of rooms that
+ *   are not connected (``RoomPartition_numberOfClasses``);
+ * - Checking if all rooms are connected (``RoomPartition_hasOneClass``);
+ * - Printing the disjoint-set (``RoomPartition_print``), used mostly for
+ *   debugging;
+ * - Freeing the disjoint-set (``RoomPartition_free``).
+ *
+ * @author Alexandre Blondin Masse
+ */
 #ifndef ROOM_PARTITION_H
 #define ROOM_PARTITION_H
 

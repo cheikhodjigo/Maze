@@ -1,3 +1,10 @@
+/**
+ * File test_partition.c
+ *
+ * Testing the ``room_partition`` module with CUnit.
+ *
+ * @author Alexandre Blondin Masse
+ */
 #include "room_partition.h"
 #include "CUnit/Basic.h"
 

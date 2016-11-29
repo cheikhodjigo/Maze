@@ -1,3 +1,11 @@
+/**
+ * File drawing.h
+ *
+ * Draws image to PNG files. The Cairo library is used under the hood to
+ * produce the image.
+ *
+ * @author Alexandre Blondin Masse
+ */
 #ifndef DRAWING_H
 #define DRAWING_H
 

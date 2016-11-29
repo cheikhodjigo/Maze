@@ -1,3 +1,11 @@
+/**
+ * File utils.h
+ *
+ * Useful data structure and function. There are not related, but turn out very
+ * useful in different parts of the program.
+ *
+ * @author Alexandre Blondin Masse
+ */
 #ifndef UTILS_H
 #define UTILS_H
 
@@ -11,20 +19,12 @@ struct uiPair {          // Unsigned integer pair
 };
 
 /**
- * Copies the string to lower case
+ * Copies the string to lower case.
  *
  * @param s       The resulting string
  * @param t       The string to be copied
  * @param length  The maximum length of the string
  */
 void strncpyLower(char *s, const char *t, int length);
-
-/**
- * Duplicates the string to lower case
- *
- * @param s  The string to be copied
- * @return   The resulting string
- */
-char *strdupLower(const char *s);
 
 #endif

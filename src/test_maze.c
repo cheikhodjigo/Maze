@@ -1,3 +1,10 @@
+/**
+ * File test_maze.c
+ *
+ * Testing the ``maze`` module with CUnit.
+ *
+ * @author Alexandre Blondin Masse
+ */
 #include "maze.h"
 #include "CUnit/Basic.h"
 

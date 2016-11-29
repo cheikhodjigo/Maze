@@ -1,3 +1,10 @@
+/**
+ * File utils.c
+ *
+ * Implements utils.h.
+ *
+ * @author Alexandre Blondin Masse
+ */
 #include <ctype.h>
 #include <string.h>
 #include "utils.h"

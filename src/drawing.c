@@ -1,3 +1,13 @@
+/**
+ * File drawing.c
+ *
+ * Draws a maze in a PNG file, by drawing each of its rooms (i.e. cells)
+ * individually.
+ *
+ * The Cairo library is used to produce the image.
+ *
+ * @author Alexandre Blondin Masse
+ */
 #include "drawing.h"
 #include <cairo.h>
 

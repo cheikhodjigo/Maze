@@ -1,3 +1,10 @@
+/**
+ * File array.c
+ *
+ * Implementation of array.h.
+ *
+ * @author Alexandre Blondin Masse
+ */
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>

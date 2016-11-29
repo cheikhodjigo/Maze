@@ -1,3 +1,14 @@
+/**
+ * File room_partition.c
+ *
+ * Implements room_partition.h.
+ *
+ * This is a classical implementation, using both the rank and compressed path
+ * heuristics, yielding an almost constant amortized time for the ``merge`` and
+ * ``find`` operations. See the Wikipedia entry for more details.
+ *
+ * @author Alexandre Blondin Masse
+ */
 #include <stdlib.h>
 #include <stdio.h>
 #include "room_partition.h"

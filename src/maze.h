@@ -1,3 +1,25 @@
+/**
+ * File maze.h
+ *
+ * Provides a data structure for representing mazes and services for handling
+ * them.
+ *
+ * Each maze is divided into rooms, i.e. individual unit square cells that can
+ * have walls in the four basic directions (right, up, left, down). The
+ * following services are available:
+ *
+ * - Generating a random maze with given numbers of rows and columns
+ *   (`Maze_randomMaze``);
+ * - Freeing a maze (``Maze_free``);
+ * - Priting an ASCII representation of a maze (``Maze_print``);
+ * - Checking if the rooms are consistent, i.e. for each wall between a pair of
+ *   adjacent rooms, both rooms have the corresponding wall
+ *   (``Maze_areRoomsConsistent``), mostly used for debugging;
+ * - Computing the unique path in the maze from the room `(0,0)` to the room
+ *   `(r-1,c-1)` (``Maze_path``).
+ *
+ * @author Alexandre Blondin Masse
+ */
 #ifndef MAZE_H
 #define MAZE_H
 

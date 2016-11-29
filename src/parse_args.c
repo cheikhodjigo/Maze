@@ -1,6 +1,15 @@
+/**
+ * File parse_args.c
+ *
+ * Implements parse_args.h, using the getopt library to simplify the
+ * processing.
+ *
+ * @author Alexandre Blondin Masse
+ */
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <getopt.h>
 #include "parse_args.h"
 #include "utils.h"
 

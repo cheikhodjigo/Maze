@@ -1,3 +1,20 @@
+/**
+ * File maze.c
+ *
+ * Implements maze.h.
+ *
+ * Each maze is represented by a 2D matrix of rooms. It is always perfect, i.e.
+ * there exists a unique path between any pair of rooms. To ensure this
+ * property, the maze is built using Prim's algorithm for computing minimum
+ * spanning trees. Since Prim's algorithm relies on the disjoint-set data
+ * structure, a `partition` member is added to simplify the computations.
+ *
+ * The order of presentatin of the functions is a bit messy and should be
+ * improved. For instance, the ``Maze_toString`` function could be also
+ * declared in `maze.h`.
+ *
+ * @author Alexandre Blondin Masse
+ */
 #include "maze.h"
 #include <stdlib.h>
 #include <stdio.h>

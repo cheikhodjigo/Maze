@@ -1,3 +1,17 @@
+/**
+ * File array.h
+ *
+ * Implements a dynamic array whose elements are pairs of unsigned integers.
+ * The only supported operations are the following:
+ *
+ * - Creation of an empty array (`Array_create`);
+ * - Appending an element to the end (`Array_append`);
+ * - Reading the i-th element (`Array_get`);
+ * - Printing an array to stdout (`Array_print`);
+ * - Deleting an array (`Array_delete`).
+ *
+ * @author Alexandre Blondin Masse
+ */
 #ifndef ARRAY_H
 #define ARRAY_H
 

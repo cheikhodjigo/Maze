@@ -1,3 +1,10 @@
+/**
+ * File test_array.c
+ *
+ * Testing the ``array`` module with CUnit.
+ *
+ * @author Alexandre Blondin Masse
+ */
 #include "array.h"
 #include "CUnit/Basic.h"
 

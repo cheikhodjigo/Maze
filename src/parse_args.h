@@ -1,8 +1,15 @@
+/**
+ * File parse_args.h
+ *
+ * Provides basic services to process the main arguments. Error codes are also
+ * provided in the case of invalid input from the user.
+ *
+ * @author Alexandre Blondin Masse
+ */
 #ifndef PARSE_ARGS_H
 #define PARSE_ARGS_H
 
 #include <stdbool.h>
-#include <getopt.h>
 
 #define FORMAT_LENGTH 5
 #define FILENAME_LENGTH 20
