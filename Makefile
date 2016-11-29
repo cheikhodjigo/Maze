@@ -1,9 +1,10 @@
 SRC_DIR = src
 BIN_DIR = bin
 EXEC = tp3
+BATS_DIR = bats
 TEST_EXEC = $(patsubst %.c,%,$(wildcard $(SRC_DIR)/test*.c))
 
-.PHONY: exec clean source test testbin
+.PHONY: exec clean source test testbats testbin testcunit
 
 exec: source bindir
 	cp $(SRC_DIR)/tp3 $(BIN_DIR)
@@ -18,11 +19,18 @@ clean:
 source:
 	$(MAKE) -C $(SRC_DIR)
 
-test: testbin
-	for test in `ls $(BIN_DIR)/test*` ; do \
-		$$test; \
+test: exec testbin testcunit testbats
+
+testbats:
+	for test_file in `ls $(BATS_DIR)/*.bats` ; do \
+		bats $(BATS_DIR)/$(test_file); \
 	done
 
 testbin: source bindir
 	$(MAKE) test -C $(SRC_DIR)
 	cp $(TEST_EXEC) $(BIN_DIR)
+
+testcunit:
+	for test in `ls $(BIN_DIR)/test*` ; do \
+		$$test; \
+	done

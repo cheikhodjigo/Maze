@@ -4,17 +4,22 @@
 #include "parse_args.h"
 #include "utils.h"
 
-// Public methods
+// -------------- //
+// Private method //
+// -------------- //
 
-void printUsage(char **argv) {
-    printf(USAGE, argv[0]);
-}
-
-// Private method
 enum Error castInteger(char *s, int *value) {
     char *p;
     *value = strtol(s, &p, 10);
     return p == NULL || *p == '\0' ? TP3_OK : TP3_TYPE_ERROR;
+}
+
+// -------------- //
+// Public methods //
+// -------------- //
+
+void printUsage(char **argv) {
+    printf(USAGE, argv[0]);
 }
 
 struct Arguments parseArguments(int argc, char **argv) {
@@ -56,6 +61,8 @@ struct Arguments parseArguments(int argc, char **argv) {
             case 'f': strncpyLower(arguments.outputFormat, optarg, FORMAT_LENGTH);
                       break;
             case 'o': strncpyLower(arguments.outputFilename, optarg, FILENAME_LENGTH);
+                      break;
+            case '?': arguments.status = TP3_ERROR_BAD_OPTION;
                       break;
         }
     }

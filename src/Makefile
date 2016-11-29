@@ -19,6 +19,7 @@ $(EXEC): $(AUXI_OBJS) $(EXEC).o
 clean:
 	rm -f *.o
 	rm -rf $(EXEC)
+	rm -rf $(TEST_EXEC)
 
 test: $(TEST_OBJS) $(TEST_EXEC)
 
