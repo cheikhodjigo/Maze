@@ -30,7 +30,7 @@ void Array_append(struct Array *array, const struct uiPair *pair) {
 }
 
 const struct uiPair *Array_get(const struct Array *array, unsigned int i) {
-    assert(0 <= i && i < array->length);
+    assert(i < array->length);
     return &array->values[i];
 }
 
