@@ -56,7 +56,7 @@ enum Error {
 };
 
 // Arguments
-struct Arguments {
+struct Arguments {                        // User arguments
     int numRows;                          // Number of rows
     int numCols;                          // Number of columns
     bool withSolution;                    // Displays solution?
@@ -66,8 +66,20 @@ struct Arguments {
     enum Error status;                    // The status of the parsing
 };
 
+/**
+ * Prints how to use the program.
+ *
+ * @param argv  The arguments provided by the user
+ */
 void printUsage(char **argv);
 
+/**
+ * Parses the arguments provided by the user.
+ *
+ * @param argc  The number of arguments including the program name
+ * @param argv  The arguments provided by the user
+ * @return      The parsed arguments
+ */
 struct Arguments parseArguments(int argc, char **argv);
 
 #endif
