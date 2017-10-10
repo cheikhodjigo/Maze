@@ -1,8 +1,7 @@
 /**
  * File utils.h
  *
- * Useful data structure and function. There are not related, but turn out very
- * useful in different parts of the program.
+ * Useful random data structure and function.
  *
  * @author Alexandre Blondin Masse
  */
