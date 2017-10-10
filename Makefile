@@ -1,6 +1,6 @@
 SRC_DIR = src
 BIN_DIR = bin
-EXEC = tp3
+EXEC = tp2
 BATS_DIR = bats
 BATS_TESTS = $(wildcard $(BATS_DIR)/*.bats)
 TEST_EXEC = $(patsubst %.c,%,$(wildcard $(SRC_DIR)/test*.c))
@@ -8,7 +8,7 @@ TEST_EXEC = $(patsubst %.c,%,$(wildcard $(SRC_DIR)/test*.c))
 .PHONY: exec clean source test testbats testbin testcunit
 
 exec: source bindir
-	cp $(SRC_DIR)/tp3 $(BIN_DIR)
+	cp $(SRC_DIR)/tp2 $(BIN_DIR)
 
 bindir:
 	mkdir -p $(BIN_DIR)

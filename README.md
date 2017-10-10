@@ -1,14 +1,14 @@
-# Travail pratique 3
+# Travail pratique 2
 
 ## Description
 
 Ce programme permet de générer aléatoirement des labyrinthes sur une grille
-carrée. Une fois compilé, l'exécutable principal est ``bin/tp3``. Un aperçu des
+carrée. Une fois compilé, l'exécutable principal est ``bin/tp2``. Un aperçu des
 options disponibles peut être obtenu comme suit :
 
 ~~~
- $ bin/tp3 --help                                                              
-Usage: bin/tp3 [--help] [--with-solution] [--num-rows VALUE] [--num-cols VALUE] 
+ $ bin/tp2 --help                                                              
+Usage: bin/tp2 [--help] [--with-solution] [--num-rows VALUE] [--num-cols VALUE] 
     [--output-format STRING] [--output-filename FILENAME]                      
                                                                                
 Generates a random maze on the square grid.                                    
@@ -42,11 +42,11 @@ make
 ~~~
 
 L'exécutable se trouve dans le répertoire `bin`. Il suffit ensuite d'entrer
-`bin/tp3 --help` pour afficher l'aide du programme.
+`bin/tp2 --help` pour afficher l'aide du programme.
 
 ## Fonctionnement
 
-Par défaut, la commande `bin/tp3` affiche un labyrinthe de dimensions 5 par 5
+Par défaut, la commande `bin/tp2` affiche un labyrinthe de dimensions 5 par 5
 sur `stdout` :
 
 ~~~
@@ -63,11 +63,11 @@ sur `stdout` :
 +-+-+-+-+-+
 ~~~
 
-Différentes options sont disponibles (voir `bin/tp3 --help` pour plus de
+Différentes options sont disponibles (voir `bin/tp2 --help` pour plus de
 détails). Par exemple, on peut modifier le nombre de rangées et de colonnes :
 
 ~~~
-$ bin/tp3 --num-rows 2 --num-cols 2
+$ bin/tp2 --num-rows 2 --num-cols 2
 +-+-+
 |   |
 + + +
@@ -79,7 +79,7 @@ Il est également possible d'afficher la solution du labyrinthe, en supposant
 qu'on commence en haut à gauche et qu'on termine en bas à droite :
 
 ~~~
-$ bin/tp3 --num-rows 6 --num-cols 8 --with-solution
+$ bin/tp2 --num-rows 6 --num-cols 8 --with-solution
 +-+-+-+-+-+-+-+-+
 |X|XXXXXXXXXXXXX|
 +X+X+-+-+ +-+-+X+
@@ -99,7 +99,7 @@ Finalement, il est également possible de produire une image au format PNG,
 grâce à la bibliothèque [Cairo](http://cairo.org/). Par exemple, la commande
 
 ~~~
-$ bin/tp3 --num-rows 4 --num-cols 7 --output-format png --output-filename maze.png
+$ bin/tp2 --num-rows 4 --num-cols 7 --output-format png --output-filename maze.png
 ~~~
 
 produit un fichier `maze.png`, qui devrait ressembler à

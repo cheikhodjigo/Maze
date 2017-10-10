@@ -1,7 +1,7 @@
 CC = gcc
 CFLAGS = -g -W -Wall `pkg-config --cflags cairo`
 LFLAGS = `pkg-config --libs cairo` 
-EXEC = tp3
+EXEC = tp2
 TEST_IMPL = $(wildcard test*.c)
 AUXI_IMPL = $(filter-out $(TEST_IMPL) $(EXEC).c,$(wildcard *.c))
 AUXI_OBJS = $(patsubst %.c,%.o,$(AUXI_IMPL))

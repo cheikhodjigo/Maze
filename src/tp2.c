@@ -8,7 +8,7 @@
 
 int main(int argc, char **argv) {
     struct Arguments arguments = parseArguments(argc, argv);
-    if (arguments.status != TP3_OK) {
+    if (arguments.status != TP2_OK) {
         //TODO: Error message?
         return arguments.status;
     } else {
@@ -22,5 +22,5 @@ int main(int argc, char **argv) {
                              arguments.wallsColor);
         }
     }
-    return TP3_OK;
+    return TP2_OK;
 }
