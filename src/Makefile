@@ -9,7 +9,7 @@ TEST_OBJS = $(patsubst %.c,%.o,$(TEST_IMPL))
 TEST_EXEC = $(patsubst %.c,%,$(TEST_IMPL))
 
 $(EXEC): $(AUXI_OBJS) $(EXEC).o
-	$(CC) -o $(EXEC) $(EXEC).o $(AUXI_OBJS) $(LFLAGS)
+	$(CC) $(EXEC).o $(AUXI_OBJS) $(LFLAGS) -o $(EXEC)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -o $@ -c $<
@@ -23,5 +23,5 @@ clean:
 
 test: $(TEST_OBJS) $(TEST_EXEC)
 
-$(TEST_EXEC): $(AUXI_OBJS)
-	$(CC) -o $@ $@.o $(AUXI_OBJS) $(LFLAGS) -lcunit
+$(TEST_EXEC): $(TEST_OBJS) $(AUXI_OBJS)
+	$(CC) $@.o $(AUXI_OBJS) $(LFLAGS) -lcunit -o $@
