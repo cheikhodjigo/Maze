@@ -9,14 +9,13 @@
 int main(int argc, char **argv) {
     struct Arguments arguments = parseArguments(argc, argv);
     if (arguments.status != TP2_OK) {
-        //TODO: Error message?
         return arguments.status;
     } else {
         struct Maze *maze = Maze_randomMaze(arguments.numRows,
                                             arguments.numCols);
-        if (strcmp(arguments.outputFormat, "text") == 0) {
+        if (strcmp(arguments.outputFormat, TEXT_FORMAT) == 0) {
             Maze_print(maze, arguments.withSolution);
-        } else if (strcmp(arguments.outputFormat, "png") == 0) {
+        } else if (strcmp(arguments.outputFormat, PNG_FORMAT) == 0) {
     	    Drawing_drawMaze(maze,
                              arguments.outputFilename,
                              arguments.wallsColor);

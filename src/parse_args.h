@@ -11,6 +11,9 @@
 
 #include <stdbool.h>
 
+#define TEXT_FORMAT "text"
+#define PNG_FORMAT "png"
+#define COLOR_DEFAULT "black"
 #define FORMAT_LENGTH 5
 #define FILENAME_LENGTH 20
 #define COLOR_LENGTH 15
