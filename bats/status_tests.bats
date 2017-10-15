@@ -60,9 +60,19 @@
   [ "$status" -eq 0 ]
 }
 
-@test "Yellow color not working" {
+@test "Yellow color working" {
   run bin/tp2 --walls-color yellow --output-format png --output-filename /tmp/maze.png
+  [ "$status" -eq 0 ]
+}
+
+@test "Magenta is not a named color" {
+  run bin/tp2 --walls-color magenta --output-format png --output-filename /tmp/maze.png
   [ "$status" -eq 7 ]
+}
+
+@test "Color names can be in upper case" {
+  run bin/tp2 --walls-color YELLOW --output-format png --output-filename /tmp/maze.png
+  [ "$status" -eq 0 ]
 }
 
 @test "Format png with solution now implemented" {

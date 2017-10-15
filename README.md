@@ -9,7 +9,7 @@ options disponibles peut être obtenu comme suit :
 ~~~
  $ bin/tp2 --help                                                              
 Usage: bin/tp2 [--help] [--with-solution] [--num-rows VALUE] [--num-cols VALUE] 
-    [--output-format STRING] [--output-filename FILENAME]                      
+    [--output-format STRING] [--output-filename FILENAME]
                                                                                
 Generates a random maze on the square grid.                                    
                                                                                
@@ -20,6 +20,10 @@ Optional arguments:
   --num-cols VALUE         The number of columns in the maze.                  
                            The default value is 5.                             
   --with-solution          Also displays solution in the maze.                 
+  --walls-color VALUE      The color of the walls in the maze (e.g. \"navy\").\n\
+                           The name must be one of the 16 basic HTML colors.\n\
+                           Defaults to \"black\". The option is ignored if the\n\
+                           output format is \"text\".\n\
   --output-format STRING   Selects the ouput format (either "text" or "png").  
                            The default format is "text".                       
   --output-filename STRING The name of the output file.                        

@@ -21,7 +21,7 @@
 #define NUM_COLS_DEFAULT 5
 #define USAGE "\
 Usage: %s [--help] [--with-solution] [--num-rows VALUE] [--num-cols VALUE]\n\
-    [--output-format STRING] [--output-filename FILENAME]\n\
+    [--walls-color VALUE] [--output-format STRING] [--output-filename FILENAME]\n\
 \n\
 Generates a random maze on the square grid.\n\
 \n\
