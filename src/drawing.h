@@ -19,9 +19,11 @@
  *                        (should have a .png extension)
  * @param wallsColor      The name of the walls color
  *                        (one of the 16 basic colors)
+ * @param withSolution    If true, the solution is drawn as well
  */
 void Drawing_drawMaze(const struct Maze* maze,
                       const char *outputFilename,
-                      const char *wallsColor);
+                      const char *wallsColor,
+                      bool withSolution);
 
 #endif

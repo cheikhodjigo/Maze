@@ -14,11 +14,13 @@ int main(int argc, char **argv) {
         struct Maze *maze = Maze_randomMaze(arguments.numRows,
                                             arguments.numCols);
         if (strcmp(arguments.outputFormat, TEXT_FORMAT) == 0) {
-            Maze_print(maze, arguments.withSolution);
+            Maze_print(maze,
+                       arguments.withSolution);
         } else if (strcmp(arguments.outputFormat, PNG_FORMAT) == 0) {
     	    Drawing_drawMaze(maze,
                              arguments.outputFilename,
-                             arguments.wallsColor);
+                             arguments.wallsColor,
+                             arguments.withSolution);
         }
     }
     return TP2_OK;

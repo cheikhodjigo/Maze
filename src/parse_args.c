@@ -103,10 +103,6 @@ struct Arguments parseArguments(int argc, char **argv) {
         printf("Error: output filename is mandatory with png format\n");
         printUsage(argv);
         arguments.status = TP2_ERROR_PNG_FORMAT_WITHOUT_FILENAME;
-    } else if (strcmp(arguments.outputFormat, PNG_FORMAT) == 0
-            && arguments.withSolution) {
-        printf("Error: printing solution with png format is not implemented\n");
-        arguments.status = TP2_ERROR_NOT_IMPLEMENTED;
     } else if (!Color_isNamedColor(arguments.wallsColor)) {
         printf("Error: the color \"%s\" is not recognized\n", arguments.wallsColor);
         arguments.status = TP2_ERROR_INVALID_COLOR;

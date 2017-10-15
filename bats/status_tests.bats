@@ -65,7 +65,7 @@
   [ "$status" -eq 7 ]
 }
 
-@test "Format png with solution not implemented" {
+@test "Format png with solution now implemented" {
   run bin/tp2 --with-solution --output-format png --output-filename /tmp/maze.png
-  [ "$status" -eq 6 ]
+  [ "$status" -eq 0 ]
 }
