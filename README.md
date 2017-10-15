@@ -38,8 +38,10 @@ Alexandre Blondin Massé
 
 ## Installation
 
-Actuellement, l'installation se fait uniquement à partir du code source. Il
-suffit de cloner le projet, et ensuite de taper
+Actuellement, l'installation se fait uniquement à partir du code source. Dans
+un premier temps, il faut installer un certain nombre de logiciels et de
+bibliothèques (voir la section [Dépendances](#dependances)). Ensuite, il suffit
+de cloner le projet et d'entrer la commande
 
 ~~~
 make
@@ -119,6 +121,9 @@ Testé sur MacOS 10.10.5 Yosemite et sur malt.labunix.uqam.ca.
 - [Cairo](http://cairo.org/), une bibliothèque permettant de générer des images
   au format PNG. Cette bibliothèque doit être installée sur le système pour que
   le projet fonctionne.
+- [PKG-config](https://www.freedesktop.org/wiki/Software/pkg-config/), un
+  logiciel facilitant la compilation et l'édition des liens lorsqu'on utilise
+  des bibliothèques tierces.
 - [CUnit](http://cunit.sourceforge.net/), pour les tests unitaires. Cette
   bibliothèque doit être installée pour que la commande `make test` fonctionne
   correctement.
