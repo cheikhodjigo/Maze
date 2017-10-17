@@ -89,14 +89,16 @@ void Drawing_drawRoom(cairo_t *cr,
  * @param path  The path solution of the maze
  */
 void Drawing_drawSolution(cairo_t *cr, const struct Array *path) {
+    const struct uiPair *room;
     cairo_set_line_width(cr, PATH_WIDTH);
+    room = Array_get(path, 0);
     cairo_move_to(cr,
-                  0.5 * (COL_OFFSET + ROOM_WIDTH),
-                  0.5 * (ROW_OFFSET + ROOM_HEIGHT));
+                  (room->second + 0.5) * (COL_OFFSET + ROOM_WIDTH),
+                  (room->first + 0.5) * (ROW_OFFSET + ROOM_HEIGHT));
     cairo_set_source_rgb(cr, 1, 0, 0);
     unsigned int k;
     for (k = 1; k < path->length; ++k) {
-        const struct uiPair *room = Array_get(path, k);
+        room = Array_get(path, k);
         cairo_line_to(cr,
                       (room->second + 0.5) * (ROOM_WIDTH + COL_OFFSET),
                       (room->first + 0.5) * (ROOM_HEIGHT + ROW_OFFSET));

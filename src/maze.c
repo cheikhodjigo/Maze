@@ -139,7 +139,12 @@ void Maze_addSolution(const struct Maze *maze,
 // Public functions //
 // ---------------- //
 
-struct Maze *Maze_randomMaze(unsigned int numRows, unsigned int numCols) {
+struct Maze *Maze_randomMaze(unsigned int numRows,
+                             unsigned int numCols,
+                             unsigned int startRoomi,
+                             unsigned int startRoomj,
+                             unsigned int endRoomi,
+                             unsigned int endRoomj) {
     struct Maze *maze;
     maze = (struct Maze*)malloc(sizeof(struct Maze));
     maze->numRows = numRows;
@@ -157,7 +162,11 @@ struct Maze *Maze_randomMaze(unsigned int numRows, unsigned int numCols) {
     }
     maze->partition = RoomPartition_create(numRows, numCols);
     Maze_makePerfect(maze);
-    maze->path = Maze_path(maze, 0, 0, numRows - 1, numCols - 1);
+    maze->path = Maze_path(maze,
+                           startRoomi,
+                           startRoomj,
+                           endRoomi,
+                           endRoomj);
     return maze;
 }
 

@@ -56,11 +56,20 @@ struct Maze {
  * Warning: Don't forget to use ``Maze_free`` when the returned maze is not
  * needed anymore.
  *
- * @param numRows  The number of rows
- * @param numCols  The number of colums
- * @return         The generated maze
+ * @param numRows     The number of rows
+ * @param numCols     The number of colums
+ * @param startRoomi  The row of the start room
+ * @param startRoomj  The column of the start room
+ * @param endRoomi    The row of the end room
+ * @param endRoomj    The column of the end room
+ * @return            The generated maze
  */
-struct Maze *Maze_randomMaze(unsigned int numRows, unsigned int numCols);
+struct Maze *Maze_randomMaze(unsigned int numRows,
+                             unsigned int numCols,
+                             unsigned int startRoomi,
+                             unsigned int startRoomj,
+                             unsigned int endRoomi,
+                             unsigned int endRoomj);
 
 /**
  * Free the memory used by the given maze.

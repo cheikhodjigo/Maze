@@ -12,7 +12,11 @@ int main(int argc, char **argv) {
         return arguments.status;
     } else {
         struct Maze *maze = Maze_randomMaze(arguments.numRows,
-                                            arguments.numCols);
+                                            arguments.numCols,
+                                            arguments.startRoomi,
+                                            arguments.startRoomj,
+                                            arguments.endRoomi,
+                                            arguments.endRoomj);
         if (strcmp(arguments.outputFormat, TEXT_FORMAT) == 0) {
             Maze_print(maze,
                        arguments.withSolution);
