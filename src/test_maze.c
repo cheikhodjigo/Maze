@@ -9,7 +9,7 @@
 #include "CUnit/Basic.h"
 
 void test_randomMaze() {
-    struct Maze *maze = Maze_randomMaze(3, 4);
+    struct Maze *maze = Maze_randomMaze(3, 4, 0, 0, 2, 3);
     CU_ASSERT(maze != NULL);
     CU_ASSERT(maze->numRows == 3);
     CU_ASSERT(maze->numCols == 4);
@@ -19,7 +19,7 @@ void test_randomMaze() {
 }
 
 void test_randomMaze2() {
-    struct Maze *maze = Maze_randomMaze(7, 3);
+    struct Maze *maze = Maze_randomMaze(7, 3, 0, 0, 6, 2);
     CU_ASSERT(maze != NULL);
     CU_ASSERT(maze->numRows == 7);
     CU_ASSERT(maze->numCols == 3);
@@ -29,7 +29,7 @@ void test_randomMaze2() {
 }
 
 void test_path() {
-    struct Maze *maze = Maze_randomMaze(7, 3);
+    struct Maze *maze = Maze_randomMaze(7, 3, 0, 0, 6, 2);
     CU_ASSERT(maze != NULL);
     CU_ASSERT(maze->path->length <= 7 * 3);
     Maze_free(maze);
