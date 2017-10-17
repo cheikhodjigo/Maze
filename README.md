@@ -113,7 +113,8 @@ produit un fichier `maze.png`, qui devrait ressembler à
 
 ## Plateformes supportées
 
-Testé sur MacOS 10.10.5 Yosemite et sur malt.labunix.uqam.ca.
+Testé sur MacOS 10.10.5 Yosemite, sur malt.labunix.uqam.ca et sur
+java.labunix.uqam.ca.
 
 ## Dépendances
 
