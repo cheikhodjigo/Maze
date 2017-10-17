@@ -35,6 +35,41 @@
   [ "$status" -eq 3 ]
 }
 
+@test "Negative number of rows" {
+  run bin/tp2 --num-rows -2 --num-cols 4
+  [ "$status" -eq 8 ]
+}
+
+@test "Null number of columns" {
+  run bin/tp2 --num-rows 5 --num-cols 0
+  [ "$status" -eq 8 ]
+}
+
+@test "Start and end rooms accepted" {
+  run bin/tp2 --num-rows 5 --num-cols 5 --start 0,4 --end 4,0
+  [ "$status" -eq 0 ]
+}
+
+@test "Invalid start room" {
+  run bin/tp2 --num-rows 5 --num-cols 5 --start 0,c4
+  [ "$status" -eq 9 ]
+}
+
+@test "Invalid end room" {
+  run bin/tp2 --num-rows 5 --num-cols 5 --end 0,4?4
+  [ "$status" -eq 9 ]
+}
+
+@test "Start room out of bound" {
+  run bin/tp2 --num-rows 5 --num-cols 5 --start 0,5
+  [ "$status" -eq 10 ]
+}
+
+@test "End room out of bound" {
+  run bin/tp2 --num-rows 8 --num-cols 8 --end -1,5
+  [ "$status" -eq 10 ]
+}
+
 @test "Format png without filename" {
   run bin/tp2 --output-format png
   [ "$status" -eq 4 ]
