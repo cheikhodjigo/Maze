@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -g -W -Wall `pkg-config --cflags cairo`
+CFLAGS = -g -std=c11 -W -Wall `pkg-config --cflags cairo`
 LFLAGS = `pkg-config --libs cairo` 
 EXEC = tp2
 TEST_IMPL = $(wildcard test*.c)
