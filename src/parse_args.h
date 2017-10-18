@@ -64,12 +64,12 @@ enum Error {
 
 // Arguments
 struct Arguments {                        // User arguments
-    int numRows;                          // Number of rows
-    int numCols;                          // Number of columns
-    int startRoomi;                       // The row of the start room
-    int startRoomj;                       // The column of the start room
-    int endRoomi;                         // The row of the end room
-    int endRoomj;                         // The column of the end room
+    unsigned int numRows;                 // Number of rows
+    unsigned int numCols;                 // Number of columns
+    unsigned int startRoomi;              // The row of the start room
+    unsigned int startRoomj;              // The column of the start room
+    unsigned int endRoomi;                // The row of the end room
+    unsigned int endRoomj;                // The column of the end room
     bool withSolution;                    // Displays solution?
     char outputFormat[FORMAT_LENGTH];     // The output format
     char outputFilename[FILENAME_LENGTH]; // The output filename
