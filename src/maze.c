@@ -100,7 +100,7 @@ void Maze_makePerfect(struct Maze *maze) {
     Maze_shuffleTransitions(transitions, numTransitions);
     Maze_mergeRooms(maze, transitions, numTransitions);
     free(transitions);
-};
+}
 
 void Maze_toString(const struct Maze *maze,
                    char** s) {
