@@ -118,7 +118,7 @@ java.labunix.uqam.ca.
 
 ## Dépendances
 
-- [Cairo](http://cairo.org/), une bibliothèque permettant de générer des images
+- [Cairo](http://cairographics.org/), une bibliothèque permettant de générer des images
   au format PNG. Cette bibliothèque doit être installée sur le système pour que
   le projet fonctionne.
 - [PKG-config](https://www.freedesktop.org/wiki/Software/pkg-config/), un
