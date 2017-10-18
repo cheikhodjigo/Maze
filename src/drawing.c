@@ -111,9 +111,7 @@ void Drawing_drawSolution(cairo_t *cr, const struct Array *path) {
 // ---------------- //
 
 void Drawing_drawMaze(const struct Maze *maze,
-                      const char *outputFilename,
-                      const char *wallsColor,
-                      bool withSolution) {
+                      const struct Arguments *arguments) {
     cairo_surface_t *surface =
         cairo_image_surface_create(CAIRO_FORMAT_ARGB32,
         COL_OFFSET + maze->numCols * (ROOM_WIDTH + COL_OFFSET),
@@ -121,17 +119,17 @@ void Drawing_drawMaze(const struct Maze *maze,
     cairo_t *cr = cairo_create(surface);
 
     unsigned int i, j;
-    struct Color color = Color_colorFromName(wallsColor);
+    struct Color color = Color_colorFromName(arguments->wallsColor);
     for (i = 0; i < maze->numRows; ++i) {
         for (j = 0; j < maze->numCols; ++j) {
             Drawing_drawRoom(cr, &maze->rooms[i][j], i, j,
                              &color);
         }
     }
-    if (withSolution) {
+    if (arguments->withSolution) {
         Drawing_drawSolution(cr, maze->path);
     }
     cairo_destroy(cr);
-    cairo_surface_write_to_png(surface, outputFilename);
+    cairo_surface_write_to_png(surface, arguments->outputFilename);
     cairo_surface_destroy(surface);
 }

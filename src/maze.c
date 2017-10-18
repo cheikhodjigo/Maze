@@ -139,34 +139,30 @@ void Maze_addSolution(const struct Maze *maze,
 // Public functions //
 // ---------------- //
 
-struct Maze *Maze_randomMaze(unsigned int numRows,
-                             unsigned int numCols,
-                             unsigned int startRoomi,
-                             unsigned int startRoomj,
-                             unsigned int endRoomi,
-                             unsigned int endRoomj) {
+struct Maze *Maze_randomMaze(const struct Arguments *arguments) {
     struct Maze *maze;
     maze = (struct Maze*)malloc(sizeof(struct Maze));
-    maze->numRows = numRows;
-    maze->numCols = numCols;
-    maze->rooms = (struct Room**)malloc(numRows * sizeof(struct Room*));
+    maze->numRows = arguments->numRows;
+    maze->numCols = arguments->numCols;
+    maze->rooms = (struct Room**)malloc(arguments->numRows * sizeof(struct Room*));
     unsigned int i, j;
-    for (i = 0; i < numRows; ++i) {
-        maze->rooms[i] = (struct Room*)malloc(numCols * sizeof(struct Room));
-        for (j = 0; j < numCols; ++j) {
+    for (i = 0; i < arguments->numRows; ++i) {
+        maze->rooms[i] = (struct Room*)malloc(arguments->numCols * sizeof(struct Room));
+        for (j = 0; j < arguments->numCols; ++j) {
             maze->rooms[i][j].right = false;
             maze->rooms[i][j].up = false;
             maze->rooms[i][j].left = false;
             maze->rooms[i][j].down = false;
         }
     }
-    maze->partition = RoomPartition_create(numRows, numCols);
+    maze->partition = RoomPartition_create(arguments->numRows,
+                                           arguments->numCols);
     Maze_makePerfect(maze);
     maze->path = Maze_path(maze,
-                           startRoomi,
-                           startRoomj,
-                           endRoomi,
-                           endRoomj);
+                           arguments->startRoomi,
+                           arguments->startRoomj,
+                           arguments->endRoomi,
+                           arguments->endRoomj);
     return maze;
 }
 

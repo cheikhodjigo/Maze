@@ -11,20 +11,11 @@ int main(int argc, char **argv) {
     if (arguments.status != TP2_OK) {
         return arguments.status;
     } else {
-        struct Maze *maze = Maze_randomMaze(arguments.numRows,
-                                            arguments.numCols,
-                                            arguments.startRoomi,
-                                            arguments.startRoomj,
-                                            arguments.endRoomi,
-                                            arguments.endRoomj);
+        struct Maze *maze = Maze_randomMaze(&arguments);
         if (strcmp(arguments.outputFormat, TEXT_FORMAT) == 0) {
-            Maze_print(maze,
-                       arguments.withSolution);
+            Maze_print(maze, arguments.withSolution);
         } else if (strcmp(arguments.outputFormat, PNG_FORMAT) == 0) {
-    	    Drawing_drawMaze(maze,
-                             arguments.outputFilename,
-                             arguments.wallsColor,
-                             arguments.withSolution);
+            Drawing_drawMaze(maze, &arguments);
         }
     }
     return TP2_OK;
