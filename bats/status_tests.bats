@@ -66,7 +66,7 @@
 }
 
 @test "End room out of bound" {
-  run bin/tp2 --num-rows 8 --num-cols 8 --end -1,5
+  run bin/tp2 --num-rows 8 --num-cols 8 --end 11,5
   [ "$status" -eq 10 ]
 }
 
