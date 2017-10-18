@@ -18,7 +18,8 @@
 // Private method //
 // -------------- //
 
-enum Error castUnsignedInteger(char *s, unsigned int *value) {
+enum Error castUnsignedInteger(const char *s,
+                               unsigned int *value) {
     char *p;
     int signedValue;
     signedValue = strtol(s, &p, 10);
@@ -40,7 +41,7 @@ enum Error castUnsignedInteger(char *s, unsigned int *value) {
  * @param column  The parsed column
  * @return        The status of the operation
  */
-enum Error castCoordinates(char *s,
+enum Error castCoordinates(const char *s,
                            unsigned int *row,
                            unsigned int *col) {
     char tail = '\0';
