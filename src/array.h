@@ -72,7 +72,7 @@ void Array_print(const struct Array *array);
 /**
  * Deletes an array.
  *
- * @param array  The array do delete
+ * @param array  The array to delete
  */
 void Array_delete(struct Array *array);
 
