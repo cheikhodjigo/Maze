@@ -31,6 +31,10 @@ Optional arguments:\n\
                            The default value is 5.\n\
   --num-cols VALUE         The number of columns in the maze.\n\
                            The default value is 5.\n\
+  --start R,C              The coordinates of the start room.\n\
+                           The default value is top left corner.\n\
+  --end R,C                The coordinates of the end room.\n\
+                           The default value is bottom right corner.\n\
   --with-solution          Also displays solution in the maze.\n\
   --walls-color VALUE      The color of the walls in the maze (e.g. \"navy\").\n\
                            The name must be one of the 16 basic HTML colors.\n\
@@ -45,20 +49,27 @@ Optional arguments:\n\
 
 // Parsing errors
 enum Error {
-    TP2_OK = 0,
-    TP2_ERROR_TOO_MANY_ARGUMENTS = 1,
-    TP2_ERROR_FORMAT_NOT_SUPPORTED = 2,
-    TP2_TYPE_ERROR = 3,
+    TP2_OK                                = 0,
+    TP2_ERROR_TOO_MANY_ARGUMENTS          = 1,
+    TP2_ERROR_FORMAT_NOT_SUPPORTED        = 2,
+    TP2_TYPE_ERROR                        = 3,
     TP2_ERROR_PNG_FORMAT_WITHOUT_FILENAME = 4,
-    TP2_ERROR_BAD_OPTION = 5,
-    TP2_ERROR_NOT_IMPLEMENTED = 6,
-    TP2_ERROR_INVALID_COLOR = 7,
+    TP2_ERROR_BAD_OPTION                  = 5,
+    TP2_ERROR_NOT_IMPLEMENTED             = 6,
+    TP2_ERROR_INVALID_COLOR               = 7,
+    TP2_VALUE_ERROR                       = 8,
+    TP2_ERROR_COORDINATES_FORMAT          = 9,
+    TP2_ERROR_COORDINATES_OUT_OF_BOUND    = 10,
 };
 
 // Arguments
 struct Arguments {                        // User arguments
-    int numRows;                          // Number of rows
-    int numCols;                          // Number of columns
+    unsigned int numRows;                 // Number of rows
+    unsigned int numCols;                 // Number of columns
+    unsigned int startRoomi;              // The row of the start room
+    unsigned int startRoomj;              // The column of the start room
+    unsigned int endRoomi;                // The row of the end room
+    unsigned int endRoomj;                // The column of the end room
     bool withSolution;                    // Displays solution?
     char outputFormat[FORMAT_LENGTH];     // The output format
     char outputFilename[FILENAME_LENGTH]; // The output filename

@@ -9,7 +9,13 @@
 #include "CUnit/Basic.h"
 
 void test_randomMaze() {
-    struct Maze *maze = Maze_randomMaze(3, 4);
+    struct Arguments arguments = {.numRows    = 3,
+                                  .numCols    = 4,
+                                  .startRoomi = 0,
+                                  .startRoomj = 0,
+                                  .endRoomi   = 2,
+                                  .endRoomj   = 3};
+    struct Maze *maze = Maze_randomMaze(&arguments);
     CU_ASSERT(maze != NULL);
     CU_ASSERT(maze->numRows == 3);
     CU_ASSERT(maze->numCols == 4);
@@ -19,7 +25,13 @@ void test_randomMaze() {
 }
 
 void test_randomMaze2() {
-    struct Maze *maze = Maze_randomMaze(7, 3);
+    struct Arguments arguments = {.numRows    = 7,
+                                  .numCols    = 3,
+                                  .startRoomi = 0,
+                                  .startRoomj = 0,
+                                  .endRoomi   = 6,
+                                  .endRoomj   = 2};
+    struct Maze *maze = Maze_randomMaze(&arguments);
     CU_ASSERT(maze != NULL);
     CU_ASSERT(maze->numRows == 7);
     CU_ASSERT(maze->numCols == 3);
@@ -29,7 +41,13 @@ void test_randomMaze2() {
 }
 
 void test_path() {
-    struct Maze *maze = Maze_randomMaze(7, 3);
+    struct Arguments arguments = {.numRows    = 7,
+                                  .numCols    = 3,
+                                  .startRoomi = 0,
+                                  .startRoomj = 0,
+                                  .endRoomi   = 6,
+                                  .endRoomj   = 2};
+    struct Maze *maze = Maze_randomMaze(&arguments);
     CU_ASSERT(maze != NULL);
     CU_ASSERT(maze->path->length <= 7 * 3);
     Maze_free(maze);

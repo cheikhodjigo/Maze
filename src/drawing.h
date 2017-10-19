@@ -10,20 +10,15 @@
 #define DRAWING_H
 
 #include "maze.h"
+#include "parse_args.h"
 
 /**
  * Produces a picture of a maze.
  *
- * @param maze            The maze whose picture is produced
- * @param outputFilename  The name of the output file
- *                        (should have a .png extension)
- * @param wallsColor      The name of the walls color
- *                        (one of the 16 basic colors)
- * @param withSolution    If true, the solution is drawn as well
+ * @param maze       The maze whose picture is produced
+ * @param arguments  The parameters of the maze
  */
 void Drawing_drawMaze(const struct Maze* maze,
-                      const char *outputFilename,
-                      const char *wallsColor,
-                      bool withSolution);
+                      const struct Arguments *arguments);
 
 #endif

@@ -89,14 +89,16 @@ void Drawing_drawRoom(cairo_t *cr,
  * @param path  The path solution of the maze
  */
 void Drawing_drawSolution(cairo_t *cr, const struct Array *path) {
+    const struct uiPair *room;
     cairo_set_line_width(cr, PATH_WIDTH);
+    room = Array_get(path, 0);
     cairo_move_to(cr,
-                  0.5 * (COL_OFFSET + ROOM_WIDTH),
-                  0.5 * (ROW_OFFSET + ROOM_HEIGHT));
+                  (room->second + 0.5) * (COL_OFFSET + ROOM_WIDTH),
+                  (room->first + 0.5) * (ROW_OFFSET + ROOM_HEIGHT));
     cairo_set_source_rgb(cr, 1, 0, 0);
     unsigned int k;
     for (k = 1; k < path->length; ++k) {
-        const struct uiPair *room = Array_get(path, k);
+        room = Array_get(path, k);
         cairo_line_to(cr,
                       (room->second + 0.5) * (ROOM_WIDTH + COL_OFFSET),
                       (room->first + 0.5) * (ROOM_HEIGHT + ROW_OFFSET));
@@ -109,9 +111,7 @@ void Drawing_drawSolution(cairo_t *cr, const struct Array *path) {
 // ---------------- //
 
 void Drawing_drawMaze(const struct Maze *maze,
-                      const char *outputFilename,
-                      const char *wallsColor,
-                      bool withSolution) {
+                      const struct Arguments *arguments) {
     cairo_surface_t *surface =
         cairo_image_surface_create(CAIRO_FORMAT_ARGB32,
         COL_OFFSET + maze->numCols * (ROOM_WIDTH + COL_OFFSET),
@@ -119,17 +119,17 @@ void Drawing_drawMaze(const struct Maze *maze,
     cairo_t *cr = cairo_create(surface);
 
     unsigned int i, j;
-    struct Color color = Color_colorFromName(wallsColor);
+    struct Color color = Color_colorFromName(arguments->wallsColor);
     for (i = 0; i < maze->numRows; ++i) {
         for (j = 0; j < maze->numCols; ++j) {
             Drawing_drawRoom(cr, &maze->rooms[i][j], i, j,
                              &color);
         }
     }
-    if (withSolution) {
+    if (arguments->withSolution) {
         Drawing_drawSolution(cr, maze->path);
     }
     cairo_destroy(cr);
-    cairo_surface_write_to_png(surface, outputFilename);
+    cairo_surface_write_to_png(surface, arguments->outputFilename);
     cairo_surface_destroy(surface);
 }
