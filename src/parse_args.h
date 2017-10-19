@@ -20,8 +20,9 @@
 #define NUM_ROWS_DEFAULT 5
 #define NUM_COLS_DEFAULT 5
 #define USAGE "\
-Usage: %s [--help] [--with-solution] [--num-rows VALUE] [--num-cols VALUE]\n\
-    [--walls-color VALUE] [--output-format STRING] [--output-filename FILENAME]\n\
+Usage: %s [--help] [--num-rows VALUE] [--num-cols VALUE] [--start R,C]\n\
+    [--end R,C] [--with-solution] [--walls-color VALUE]\n\
+    [--output-format STRING] [--output-filename FILENAME]\n\
 \n\
 Generates a random maze on the square grid.\n\
 \n\
