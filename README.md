@@ -6,9 +6,10 @@ Ce programme permet de générer aléatoirement des labyrinthes sur une grille
 carrée. Une fois compilé, l'exécutable principal est ``bin/tp2``. Un aperçu des
 options disponibles peut être obtenu comme suit :
 
-~~~
-Usage: bin/tp2 [--help] [--with-solution] [--num-rows VALUE] [--num-cols VALUE]
-    [--walls-color VALUE] [--output-format STRING] [--output-filename FILENAME]
+~~~sh
+Usage: bin/tp2 [--help] [--num-rows VALUE] [--num-cols VALUE] [--start R,C]
+    [--end R,C] [--with-solution] [--walls-color VALUE]
+    [--output-format STRING] [--output-filename FILENAME]
 
 Generates a random maze on the square grid.
 
