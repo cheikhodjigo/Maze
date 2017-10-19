@@ -98,7 +98,7 @@ struct Arguments parseArguments(int argc, char **argv) {
     // Parse options
     while (true) {
         int option_index = 0;
-        int c = getopt_long(argc, argv, "hsrctewfo", longOpts, &option_index);
+        int c = getopt_long(argc, argv, "hsr:c:t:e:w:f:o:", longOpts, &option_index);
         if (c == -1) break;
         switch (c) {
             case 'h': showHelp = true;
