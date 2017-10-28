@@ -25,6 +25,12 @@
   [ "$status" -eq 0 ]
 }
 
+@test "Short options" {
+  run bin/tp2 -r 2 -c 2
+  [ "$status" -eq 0 ]
+}
+
+
 @test "Invalid number of rows" {
   run bin/tp2 --num-rows a
   [ "$status" -eq 3 ]
