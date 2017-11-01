@@ -7,6 +7,7 @@
  */
 #include "color.h"
 #include <string.h>
+#include <assert.h>
 
 struct Color Color_colorFromName(const char *colorName) {
     struct Color color;
@@ -42,6 +43,8 @@ struct Color Color_colorFromName(const char *colorName) {
         color.r = 0.500; color.g = 0.000; color.b = 0.500;
     } else if (strcmp(colorName, "fuchsia") == 0) {
         color.r = 1.000; color.g = 0.000; color.b = 1.000;
+    } else {
+        assert(false && "Color name not recognized.");
     }
     return color;
 }
