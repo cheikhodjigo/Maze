@@ -11,7 +11,7 @@ TEST_EXEC = $(patsubst %.c,%,$(TEST_IMPL))
 $(EXEC): $(AUXI_OBJS) $(EXEC).o
 	$(CC) $(EXEC).o $(AUXI_OBJS) $(LFLAGS) -o $(EXEC)
 
-%.o: %.c
+%.o: %.c %.h
 	$(CC) $(CFLAGS) -o $@ -c $<
 
 .PHONY: clean test
@@ -21,7 +21,7 @@ clean:
 	rm -rf $(EXEC)
 	rm -rf $(TEST_EXEC)
 
-test: $(TEST_OBJS) $(TEST_EXEC)
+test: $(TEST_EXEC)
 
 $(TEST_EXEC): $(TEST_OBJS) $(AUXI_OBJS)
 	$(CC) $@.o $(AUXI_OBJS) $(LFLAGS) -lcunit -o $@
