@@ -166,7 +166,7 @@ struct Arguments parseArguments(int argc, char **argv) {
     } else if (arguments.endRoomi >= arguments.numRows ||
                arguments.endRoomj >= arguments.numCols) {
         printf("Error: the end room coordinates %d,%d are out of bound\n",
-               arguments.startRoomi, arguments.startRoomj),
+               arguments.endRoomi, arguments.endRoomj),
         arguments.status = TP2_ERROR_COORDINATES_OUT_OF_BOUND;
         printUsage(argv);
     } else if (strcmp(arguments.outputFormat, TEXT_FORMAT) != 0
