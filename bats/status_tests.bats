@@ -66,6 +66,12 @@
   [ "$status" -eq 9 ]
 }
 
+@test "Invalid end room message" {
+  run bin/tp2 -r 5 -c 5 -e 1,6
+  [ "${lines[0]}" = "Error: the end room coordinates 1,6 are out of bound" ]
+  [ "$status" -eq 10 ]
+}
+
 @test "Start room out of bound" {
   run bin/tp2 --num-rows 5 --num-cols 5 --start 0,5
   [ "$status" -eq 10 ]
