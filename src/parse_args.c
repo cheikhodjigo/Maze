@@ -170,7 +170,8 @@ struct Arguments parseArguments(int argc, char **argv) {
         arguments.status = TP2_ERROR_COORDINATES_OUT_OF_BOUND;
         printUsage(argv);
     } else if (strcmp(arguments.outputFormat, TEXT_FORMAT) != 0
-            && strcmp(arguments.outputFormat, PNG_FORMAT) != 0) {
+            && strcmp(arguments.outputFormat, PNG_FORMAT) != 0
+            && strcmp(arguments.outputFormat, DOT_FORMAT) != 0) {
         printf("Error: format %s not supported\n", arguments.outputFormat);
         printUsage(argv);
         arguments.status = TP2_ERROR_FORMAT_NOT_SUPPORTED;
