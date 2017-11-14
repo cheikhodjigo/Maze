@@ -32,7 +32,19 @@ struct RoomsTransition {
     unsigned int j;
     bool horizontal; // Horizontal or vertical?
 };
-
+void Maze_dot( struct Maze * maze ){
+    unsigned int i,j,k;
+    k = 0;
+    printf("strict graph {\n");
+    printf("  node [shape=box];\n");
+    for(i = 0; i < maze->numRows;i++){
+        for(j = 0; j < maze->numCols;j++){
+            printf("  \"\(%d,%d)\" [label = \"%d,%d\", pos =\"%d,%d!\"];\n", i,j,i,j,j,k);
+        }
+        k--;
+    }
+    printf("}\n");
+}
 void Maze_makeTransitions(struct RoomsTransition transitions[],
                           unsigned int numRows,
                           unsigned int numCols) {
