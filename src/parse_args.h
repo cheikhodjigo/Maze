@@ -11,6 +11,7 @@
 
 #include <stdbool.h>
 
+#define DOT_FORMAT  "dot"
 #define TEXT_FORMAT "text"
 #define PNG_FORMAT "png"
 #define COLOR_DEFAULT "black"
