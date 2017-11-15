@@ -113,5 +113,5 @@ struct Array *Maze_path(const struct Maze *maze,
 * @param maze   The maze
 *      
 */
-void Maze_dot(const struct Maze * maze);
+void Maze_dot(const struct Maze * maze, bool withSolution);
 #endif
