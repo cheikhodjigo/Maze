@@ -136,6 +136,23 @@ void Maze_addSolution(const struct Maze *maze,
     }
 }
 
+void printSolution( const struct Array * path ){
+    assert(path != NULL);
+    unsigned int i,j,k;
+    i = 0;
+    j = 0;
+    for(k = 0; k < path->length; k++){
+        i=path->values[k].first;
+        j=path->values[k].second;
+        printf("  \"(%d,%d)\" [style=filled, fillcolor=azure, color=blue, penwidth=3];\n",i,j);
+        if(k >= 1){
+             printf("  \"(%d,%d)\" -- \"(%d,%d)\" [penwidth=3, color=blue];\n",
+             i,j,path->values[k-1].first,path->values[k-1].second);
+        }
+    }
+
+}
+
 // ---------------- //
 // Public functions //
 // ---------------- //
@@ -292,7 +309,7 @@ struct Array *Maze_path(const struct Maze *maze,
     return path;
 }
 
-void Maze_dot(const struct Maze * maze ){
+void Maze_dot(const struct Maze * maze, bool withSolution){
     unsigned int i,j,k;
     k = 0;
     printf("strict graph {\n");
@@ -314,6 +331,8 @@ void Maze_dot(const struct Maze * maze ){
             }
         }
     }
+    if(withSolution)
+        printSolution( maze->path);
     printf("}\n");
 }
 
