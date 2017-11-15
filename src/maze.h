@@ -107,5 +107,11 @@ struct Array *Maze_path(const struct Maze *maze,
                         unsigned int room1j,
                         unsigned int room2i,
                         unsigned int room2j);
-
+/**
+* Print the maze in the dot format 
+* 
+* @param maze   The maze
+*      
+*/
+void Maze_dot(const struct Maze * maze);
 #endif
