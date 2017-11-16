@@ -17,7 +17,7 @@ int main(int argc, char **argv) {
         } else if (strcmp(arguments.outputFormat, PNG_FORMAT) == 0) {
             Drawing_drawMaze(maze, &arguments);
         } else if (strcmp(arguments.outputFormat, DOT_FORMAT) == 0){
-            Maze_dot(maze);
+            Maze_dot(maze,arguments.withSolution);
         }
     }
     return TP2_OK;
