@@ -126,3 +126,13 @@
   run bin/tp2 --with-solution --output-format png --output-filename /tmp/maze.png
   [ "$status" -eq 0 ]
 }
+
+@test "Format dot" {
+  run bin/tp2 --output-format dot
+  [ "$status" -eq 0 ]
+}
+
+@test "Format dot with solution added" {
+  run bin/tp2 --output-format dot --with-solution 
+  [ "$status" -eq 0 ]    
+}
