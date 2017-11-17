@@ -103,6 +103,76 @@ $ bin/tp2 --num-rows 6 --num-cols 8 --with-solution
 | |   | |   | |X|
 +-+-+-+-+-+-+-+-+
 ~~~
+Il est possible de produire un graphe non oriente qui sera en format dot et  
+représentant le labyrinthe. À l'aide de ce format on  peut produire une image 
+en format png nomme maze.png. Ce fichier est produit à l'aide de la bibliothèque
+[Graphviz](http://www.graphviz.org/). Ainsi la commande:
+
+~~~
+$ bin/tp2 --num-rows 2 --num-cols 3 --output-format dot
+~~~
+produit le résultat suivant :
+~~~
+strict graph {
+node [shape=box];
+"(0,0)" [label="0,0", pos="0,0!"];
+"(0,1)" [label="0,1", pos="1,0!"];
+"(0,2)" [label="0,2", pos="2,0!"];
+"(1,0)" [label="1,0", pos="0,-1!"];
+"(1,1)" [label="1,1", pos="1,-1!"];
+"(1,2)" [label="1,2", pos="2,-1!"];
+"(0,2)" -- "(0,1)";
+"(1,0)" -- "(0,0)";
+"(1,1)" -- "(0,1)";
+"(1,1)" -- "(1,0)";
+"(1,2)" -- "(1,1)";
+}
+
+~~~ 
+et la commande :
+
+
+~~~
+$ bin/tp2 --num-rows 2 --num-cols 3 --output-format dot | neato -Tpng -o maze.png
+~~~
+
+produit un fichier png nommé maze.png qui est en réalité la représentation graphique
+de ce labyrinthe.
+De la même manière on peut aussi produire: d'abord le format dot d'un labyrinthe avec une
+solution puis son format png. Cela se fait avec les commandes suivantes qui sont chacunes
+accompagnés de leurs résultats.
+
+~~~
+bin/tp2 --num-rows 2 --num-cols 3 --output-format dot --with-solution
+~~~
+strict graph {
+node [shape=box];
+"(0,0)" [label="0,0", pos="0,0!"];
+"(0,1)" [label="0,1", pos="1,0!"];
+"(0,2)" [label="0,2", pos="2,0!"];
+"(1,0)" [label="1,0", pos="0,-1!"];
+"(1,1)" [label="1,1", pos="1,-1!"];
+"(1,2)" [label="1,2", pos="2,-1!"];
+"(0,1)" -- "(0,0)";
+"(1,1)" -- "(0,1)";
+"(1,1)" -- "(1,0)";
+"(1,2)" -- "(0,2)";
+"(1,2)" -- "(1,1)";
+"(0,0)" [style=filled, fillcolor=azure, color=blue, penwidth=3];
+"(0,1)" [style=filled, fillcolor=azure, color=blue, penwidth=3];
+"(0,0)" -- "(0,1)" [penwidth=3, color=blue];
+"(1,1)" [style=filled, fillcolor=azure, color=blue, penwidth=3];
+"(0,1)" -- "(1,1)" [penwidth=3, color=blue];
+"(1,2)" [style=filled, fillcolor=azure, color=blue, penwidth=3];
+"(1,1)" -- "(1,2)" [penwidth=3, color=blue];
+}
+
+~~~
+$ bin/tp2 --num-rows 2 --num-cols 3 --output-format dot --with-solution | neato -Tpng -o maze.png
+~~~
+
+Cela produit une image en format png nommé maze.png et qui mets en évidence la solution du 
+labyrinthe.
 
 Finalement, il est également possible de produire une image au format PNG,
 grâce à la bibliothèque [Cairo](http://cairo.org/). Par exemple, la commande
@@ -125,6 +195,13 @@ java.labunix.uqam.ca.
 - [Cairo](http://cairographics.org/), une bibliothèque permettant de générer des images
   au format PNG. Cette bibliothèque doit être installée sur le système pour que
   le projet fonctionne.
+- [Bats](https://github.com/sstephenson/bats), pour les tests unitaires en
+  boîte noire. Ce logiciel permet d'écrire des petits tests en Bash pour
+  s'assurer que le programme a le comportement souhaité.
+- [Graphviz](http://www.graphviz.org/), un logiciel pour visualiser des graphiques. Il
+  permet de représenter des informations, qui initialement été sous formes de fichier
+  text, en graphique. Ce dernier utilise le format dot dont la documentation peut être 
+  trouver sur internet, afin de faire cette représentation graphique.
 - [PKG-config](https://www.freedesktop.org/wiki/Software/pkg-config/), un
   logiciel facilitant la compilation et l'édition des liens lorsqu'on utilise
   des bibliothèques tierces.
