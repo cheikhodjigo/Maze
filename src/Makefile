@@ -1,6 +1,6 @@
 CC = gcc
 CFLAGS = -g -std=c11 -W -Wall `pkg-config --cflags cairo`
-LFLAGS = `pkg-config --libs cairo` 
+LFLAGS = `pkg-config --libs cairo` -ljansson
 EXEC = tp2
 TEST_IMPL = $(wildcard test*.c)
 AUXI_IMPL = $(filter-out $(TEST_IMPL) $(EXEC).c,$(wildcard *.c))
