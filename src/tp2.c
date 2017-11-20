@@ -11,7 +11,7 @@
 int main(int argc, char **argv) {
     struct Arguments arguments;// = parseArguments(argc, argv);
     if(!isatty(STDIN_FILENO) && argc == 1){
-        arguments = getJson(stdin);
+        arguments = getJson(stdin,argv);
     }else {
         arguments = parseArguments(argc, argv);
     } 
