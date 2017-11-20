@@ -140,7 +140,7 @@ struct Arguments getJson(FILE * filename){
             strncpy(arguments.outputFilename, text, FILENAME_LENGTH);
             arguments.status = TP2_OK;
         }else{
-            fprintf(stderr," Error: params %s does not exists\n",json_string_value(value));
+            fprintf(stderr," Error: params %s does not exists\n",key);
             arguments.status = TP2_TYPE_ERROR;
             return arguments;
         }
