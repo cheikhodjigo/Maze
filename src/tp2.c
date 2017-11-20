@@ -15,6 +15,7 @@ int main(int argc, char **argv) {
     }else {
         arguments = parseArguments(argc, argv);
     } 
+    
     if (arguments.status != TP2_OK) {
         return arguments.status;
     } else {
