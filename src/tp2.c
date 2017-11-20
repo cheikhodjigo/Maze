@@ -3,11 +3,18 @@
 #include <stdbool.h>
 #include <string.h>
 #include "parse_args.h"
+#include "parse_json.h"
+#include <unistd.h>
 #include "maze.h"
 #include "drawing.h"
 
 int main(int argc, char **argv) {
-    struct Arguments arguments = parseArguments(argc, argv);
+    struct Arguments arguments;// = parseArguments(argc, argv);
+    if(!isatty(STDIN_FILENO) && argc == 1){
+        arguments = getJson(stdin);
+    }else {
+        arguments = parseArguments(argc, argv);
+    } 
     if (arguments.status != TP2_OK) {
         return arguments.status;
     } else {
