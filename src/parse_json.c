@@ -4,6 +4,7 @@
 #include <string.h>
 #include "utils.h"
 #include "color.h"
+
 struct Arguments getJson(FILE * filename,char ** argv){
     struct Arguments arguments;
     bool endRoomProvided = false;
@@ -27,7 +28,7 @@ struct Arguments getJson(FILE * filename,char ** argv){
     root = json_loadf(filename,0,&error);
     if(!root){
         fprintf(stderr, "error: on line %d: %s\n", error.line, error.text);
-        arguments.status = TP2_ERROR_FORMAT_NOT_SUPPORTED;
+        arguments.status = TP2_JSON_FORMAT_INVALID;
         printUsage(argv);
         return arguments;
     }
@@ -35,7 +36,7 @@ struct Arguments getJson(FILE * filename,char ** argv){
     {
         fprintf(stderr, "error: root is not an array\n");
         json_decref(root);
-        arguments.status = TP2_TYPE_ERROR;
+        arguments.status = TP2_JSON_FORMAT_INVALID;
         printUsage(argv);
         return arguments;
     }
@@ -47,7 +48,7 @@ struct Arguments getJson(FILE * filename,char ** argv){
         if(strcmp(key,"num-rows") == 0){
             if(!json_is_integer(value)){
                 fprintf(stderr," Error: the number of rows and columns must be an integer\n");
-                arguments.status = TP2_VALUE_ERROR;
+                arguments.status = TP2_JSON_VALUE_INVALID;
                 printUsage(argv);
                 return arguments;
             }
@@ -56,7 +57,7 @@ struct Arguments getJson(FILE * filename,char ** argv){
         }else if(strcmp(key,"num-cols") == 0){
             if(!json_is_integer(value)){
                 fprintf(stderr," Error: the number of rows and columns must be an integer\n");
-                arguments.status = TP2_VALUE_ERROR;
+                arguments.status = TP2_JSON_VALUE_INVALID;
                 printUsage(argv);
                 return arguments;
             }
@@ -65,13 +66,13 @@ struct Arguments getJson(FILE * filename,char ** argv){
         }else if(strcmp(key,"start") == 0){
             if(!json_is_array(value)){
                 fprintf(stderr," Error: the start and end rooms must be an array\n");
-                arguments.status = TP2_VALUE_ERROR;
+                arguments.status = TP2_JSON_VALUE_INVALID;
                 printUsage(argv);
                 return arguments;
             }
             if(json_array_size(value) > 2){
                 fprintf(stderr," Error: the start and end rooms must be an array of size 2\n");
-                arguments.status = TP2_VALUE_ERROR;
+                arguments.status = TP2_JSON_VALUE_INVALID;
                 printUsage(argv);
                 return  arguments;
             }
@@ -80,7 +81,7 @@ struct Arguments getJson(FILE * filename,char ** argv){
                 arrayOfInt= json_array_get(value,a);
                 if(!json_is_integer(arrayOfInt)){
                     fprintf(stderr," Error: the start and end rooms must be an array of size 2\n");
-                    arguments.status = TP2_VALUE_ERROR;
+                    arguments.status = TP2_JSON_ARRAYVALUE_INVALID;
                     printUsage(argv);
                     return  arguments;
                 }
@@ -98,7 +99,7 @@ struct Arguments getJson(FILE * filename,char ** argv){
             }
             if(json_array_size(value) > 2){
                 fprintf(stderr," Error: the start and end rooms must be an array of size 2\n");
-                arguments.status = TP2_VALUE_ERROR;
+                arguments.status = TP2_JSON_ARRAYVALUE_INVALID;
                 printUsage(argv);
                 return  arguments;
             }
@@ -119,7 +120,7 @@ struct Arguments getJson(FILE * filename,char ** argv){
         }else if(strcmp(key,"with-solution") == 0){
             if(!json_is_boolean(value)){
                 fprintf(stderr," Error: params with-solution must be a boolean\n");
-                arguments.status = TP2_VALUE_ERROR;
+                arguments.status = TP2_JSON_VALUE_INVALID;
                 printUsage(argv);
                 return arguments;
             }
@@ -128,7 +129,7 @@ struct Arguments getJson(FILE * filename,char ** argv){
         }else if(strcmp(key,"walls-color") == 0){
             if(!json_is_string(value)){
                 fprintf(stderr," Error: params walls-color must be a string\n");
-                arguments.status = TP2_VALUE_ERROR;
+                arguments.status = TP2_JSON_VALUE_INVALID;
                 printUsage(argv);
                 return arguments;
             }
@@ -138,7 +139,7 @@ struct Arguments getJson(FILE * filename,char ** argv){
         }else if(strcmp(key,"output-format") == 0){
             if(!json_is_string(value)){
                 fprintf(stderr," Error: params output-format must be a string\n");
-                arguments.status = TP2_VALUE_ERROR;
+                arguments.status = TP2_JSON_VALUE_INVALID;
                 printUsage(argv);
                 return arguments;
             }
@@ -148,7 +149,7 @@ struct Arguments getJson(FILE * filename,char ** argv){
         }else if(strcmp(key,"output-filename") == 0){
             if(!json_is_string(value)){
                 fprintf(stderr," Error: params output-filename must be a string\n");
-                arguments.status = TP2_VALUE_ERROR;
+                arguments.status = TP2_JSON_VALUE_INVALID;
                 printUsage(argv);
                 return arguments;
             }
@@ -159,7 +160,7 @@ struct Arguments getJson(FILE * filename,char ** argv){
             showHelp = true;            
         }else{
             fprintf(stderr," Error: params %s does not exists\n",key);
-            arguments.status = TP2_TYPE_ERROR;
+            arguments.status = TP2_JSON_KEY_INVALID;
             printUsage(argv);    
             return arguments;
         }
