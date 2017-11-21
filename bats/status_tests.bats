@@ -156,3 +156,8 @@
   run bin/tp2 < exemple/wrong-format3.json  
   [ "$status" -eq 13 ]
 }
+
+@test "Invalid start array format" {
+  run bin/tp2 < exemple/wrong-format4.json
+  [ "$status" -eq 14 ]    
+}

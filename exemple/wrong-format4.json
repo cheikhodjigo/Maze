@@ -1,0 +1,11 @@
+{
+    "num-rows": 8,
+    "num-cols": 12,
+    "start": ["hello", "world"],
+    "end": [3, 7],
+    "with-solution": true,
+    "walls-color": "fuchsia",
+    "output-format": "png",
+    "output-filename": "maze.png"
+}
+
