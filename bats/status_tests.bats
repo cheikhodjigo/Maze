@@ -136,3 +136,23 @@
   run bin/tp2 --output-format dot --with-solution 
   [ "$status" -eq 0 ]    
 }
+
+@test "Format json normal" {
+  run bin/tp2 < exemple/param.json
+  [ "$status" -eq 0 ]      
+}
+
+@test "Wrong json format" {
+  run bin/tp2 < exemple/wrong-format.json
+  [ "$status" -eq 11 ]    
+}
+
+@test "Not existing json key" {
+  run bin/tp2 < exemple/wrong-format2.json
+  [ "$status" -eq 12 ]  
+}
+
+@test "Invalid json value" {
+  run bin/tp2 < exemple/wrong-format3.json  
+  [ "$status" -eq 13 ]
+}
