@@ -8,36 +8,45 @@ options disponibles peut être obtenu comme suit :
 
 ~~~sh
 Usage: bin/tp2 [--help] [--num-rows VALUE] [--num-cols VALUE] [--start R,C]
-    [--end R,C] [--with-solution] [--walls-color VALUE]
-    [--output-format STRING] [--output-filename FILENAME]
+[--end R,C] [--with-solution] [--walls-color VALUE]
+[--output-format STRING] [--output-filename FILENAME]
 
 Generates a random maze on the square grid.
 
 Optional arguments:
-  --help                   Shows this help message and exit
-  --num-rows VALUE         The number of rows in the maze.
-                           The default value is 5.
-  --num-cols VALUE         The number of columns in the maze.
-                           The default value is 5.
-  --start R,C              The coordinates of the start room.
-                           The default value is top left corner.
-  --end R,C                The coordinates of the end room.
-                           The default value is bottom right corner.
-  --with-solution          Also displays solution in the maze.
-  --walls-color VALUE      The color of the walls in the maze (e.g. "navy").
-                           The name must be one of the 16 basic HTML colors.
-                           Defaults to "black". The option is ignored if the
-                           ouput format is "text".
-  --output-format STRING   Selects the ouput format (either "text" or "png").
-                           The default format is "text".
-  --output-filename STRING The name of the output file.
-                           Mandatory for png format.
-                           If not specified, displays on stdout.
+--help                   Shows this help message and exit
+--num-rows VALUE         The number of rows in the maze.
+The default value is 5.
+--num-cols VALUE         The number of columns in the maze.
+The default value is 5.
+--start R,C              The coordinates of the start room.
+The default value is top left corner.
+--end R,C                The coordinates of the end room.
+The default value is bottom right corner.
+--with-solution          Also displays solution in the maze.
+--walls-color VALUE      The color of the walls in the maze (e.g. "navy").
+The name must be one of the 16 basic HTML colors.
+Defaults to "black". The option is ignored if the
+ouput format is "text".
+--output-format STRING   Selects the ouput format (either "text" or "png").
+The default format is "text".
+--output-filename STRING The name of the output file.
+Mandatory for png format.
+If not specified, displays on stdout.
+
+You can also use the command bin/tp2 < "nameOfFile".json.
+The json file should containts the command that the programs
+will take. Those arguments are the same as the ones named up here.
+
 ~~~
 
 ## Auteur
 
 Alexandre Blondin Massé
+
+## Auteur de Maintenance
+
+Cheikh Omar DJIGO
 
 ## Installation
 
@@ -184,6 +193,60 @@ $ bin/tp2 --num-rows 4 --num-cols 7 --output-format png --output-filename maze.p
 produit un fichier `maze.png`, qui devrait ressembler à
 
 ![](images/maze.png)
+~~~
+## Autre utilisation possible
+
+Vous pouvez aussi choisir de mettre tous les arguments dans un fichier json. Ensuite il suffit d'entrer
+la commande suivante:
+~~~
+bin/tp2 < nomDuFichier.json
+~~~'
+Ce qui aura pour résultat d'exécuter les commandes que vous avez entrez dans le fichier json.
+
+Par exemple si on a le fichier param.json, qui se trouve dans le répertoire courant, suivant:
+{
+"num-rows": 8,
+"num-cols": 12,
+"start": [1, 1],
+"end": [3, 7],
+"with-solution": true,
+"walls-color": "fuchsia",
+"output-format": "png",
+"output-filename": "maze.png"
+}
+ 
+Et qu'on rentre la commande suivante:
+
+~~~
+bin/tp2 < param.json
+~~~'
+
+On aura le même résultat que si on entre la commande:
+
+~~~
+bin/tp2 --num-rows 8 --num-cols 12 --start 1,1 --end 3,7 --with-solution --walls-color fuchsia --output-format png --output-filename maze.png
+~~~
+
+Remarque: Si l'utilisateur combine des paramètres avec une saisie sur
+l'entrée standard, vous pouvez adopter le comportement que vous souhaitez. Par
+exemple, dans ma solution, si quelqu'un tape
+
+~~~
+bin/tp2 --num-rows 8 < param.json
+~~~~
+
+alors c'est équivalent à entrer la commande
+
+~~~
+bin/tp2 --num-rows 8
+~~~
+
+(Autrement dit, on ignore < param.json). En d'autres termes, le seul cas où
+on lit sur l'entrée standard est quand il n'y a aucun paramètre additionnel qui
+est spécifié. Par conséquent, le cas où on combine des paramètres en ligne de
+commande et sur l'entrée standard ne sera donc pas considéré dans la correction
+de votre travail.
+
 
 ## Plateformes supportées
 

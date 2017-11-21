@@ -47,6 +47,11 @@ Optional arguments:\n\
   --output-filename STRING The name of the output file.\n\
                            Mandatory for png format.\n\
                            If not specified, displays on stdout.\n\
+\n\
+You can also use the command bin/tp2 < \"nameOfFile\".json.\n\
+The json file should containts the command that the programs\n\
+will take. Those arguments are the same as the ones named up here.\n\
+\n\
 "
 
 // Parsing errors
