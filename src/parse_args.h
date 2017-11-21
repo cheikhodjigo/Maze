@@ -62,7 +62,11 @@ enum Error {
     TP2_VALUE_ERROR                       = 8,
     TP2_ERROR_COORDINATES_FORMAT          = 9,
     TP2_ERROR_COORDINATES_OUT_OF_BOUND    = 10,
-    TP2_JSON_FORMAT_INVALID               = 11,   
+    TP2_JSON_FORMAT_INVALID               = 11,
+    TP2_JSON_KEY_INVALID                  = 12,
+    TP2_JSON_VALUE_INVALID                = 13,
+    TP2_JSON_ARRAYVALUE_INVALID           = 14,
+    
 };
 
 // Arguments
