@@ -18,6 +18,17 @@
 // Private method //
 // -------------- //
 
+/**
+* Convert a string to an integer and put that
+* value into another string. It will also give
+* the error statement(the status of the operation)
+* 
+* @param s      The string that will be converted. It 
+*               should contains numeric value only.
+* @param value  The Integer where the numeric value of the 
+*               string will be stored
+* @return       The status of the operation                      
+*/
 enum Error castUnsignedInteger(const char *s,
                                unsigned int *value) {
     char *p;
